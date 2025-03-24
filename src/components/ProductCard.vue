@@ -1,5 +1,5 @@
 <template>
-  <article class="product-card">
+  <article class="product-card" @click="$router.push('/product/1')">
     <div class="product-card__favorite">
       <FavoriteButton :is-active="isFavorite" @toggle="toggleFavorite" />
     </div>
@@ -17,13 +17,9 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import { Product } from "../types/Product";
-import FavoriteButton from "../components/UI/FavoriteButton.vue";
 
 export default defineComponent({
   name: "ProductCard",
-  components: {
-    FavoriteButton,
-  },
   props: {
     product: {
       type: Object as () => Product,
@@ -47,6 +43,7 @@ export default defineComponent({
 <style scoped>
 .product-card {
   display: flex;
+  max-width: 234px;
   min-width: 200px;
   padding: 24px 16px;
   flex-direction: column;
@@ -55,6 +52,8 @@ export default defineComponent({
   flex: 1;
   border-radius: 9px;
   background-color: #f6f6f6;
+  font-style: italic;
+  cursor: pointer;
 }
 
 .product-card__favorite {
@@ -89,7 +88,7 @@ export default defineComponent({
 .product-card__title {
   color: #000;
   text-align: center;
-  font-family: ABeeZee;
+  font-style: italic;
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;

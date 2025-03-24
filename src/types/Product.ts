@@ -5,3 +5,20 @@ export interface Product {
   title: string;
   price: string;
 }
+
+export interface ProductImage {
+  url: string;
+  isActive?: boolean;
+}
+
+export interface Specification {
+  icon: string;
+  label: string;
+  value: string;
+}
+
+export interface DeliveryFeature {
+  icon: string;
+  title: string;
+  subtitle: string;
+}

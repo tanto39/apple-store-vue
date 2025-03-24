@@ -25,12 +25,12 @@ export default defineComponent({
 .favorite-button {
   width: 32px;
   height: 32px;
-  background: "../../assets/favorite-button.svg";
+  background: url("../../assets/favorite-button.svg") center center no-repeat;
   border: none;
   padding: 0;
   cursor: pointer;
 }
 .favorite-button_active {
-  background: "../../assets/favorite-active.svg";
+  background: url("../../assets/favorite-active.svg") center center no-repeat;
 }
 </style>

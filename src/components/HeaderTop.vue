@@ -17,13 +17,9 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import SearchInput from "./UI/SearchInput.vue";
 
 export default defineComponent({
-  name: "HeaderTop",
-  components: {
-    SearchInput,
-  },
+  name: "HeaderTop"
 });
 </script>
 

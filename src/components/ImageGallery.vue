@@ -1,0 +1,79 @@
+<template>
+  <section class="gallery">
+    <div class="thumbnails">
+      <img
+        v-for="(image, index) in images"
+        :key="index"
+        :src="image.url"
+        alt=""
+        :class="['thumbnail', { 'thumbnail_active': image.isActive }]"
+        @click="$emit('select-image', index)"
+      />
+    </div>
+    <div class="main-image">
+      <img :src="mainImage.url" alt="" class="main-image__img" />
+    </div>
+  </section>
+</template>
+
+<script setup lang="ts">
+import { ProductImage } from "../types/Product";
+
+defineProps<{
+  images: ProductImage[];
+  mainImage: ProductImage;
+}>();
+
+defineEmits<{
+  (e: "select-image", index: number): void;
+}>();
+</script>
+
+<style scoped>
+.gallery {
+  display: flex;
+  width: 536px;
+  align-items: center;
+  gap: 48px;
+}
+
+.thumbnails {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.thumbnail {
+  width: 75px;
+  height: 93px;
+  opacity: 0.4;
+  cursor: pointer;
+}
+
+.thumbnail_active {
+  opacity: 1;
+}
+
+.main-image__img {
+  width: 413px;
+  height: 516px;
+  object-fit: contain;
+}
+
+@media (max-width: 991px) {
+  .gallery {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .thumbnails {
+    flex-direction: row;
+  }
+
+  .main-image__img {
+    width: 100%;
+    height: auto;
+  }
+}
+</style>

@@ -16,8 +16,10 @@ export default defineComponent({
 </script>
 
 <style>
-#app {
+* {
   font: 16px ABeeZee, Abel, Helvetica, Arial, sans-serif;
+}
+#app {
   max-width: 1440px;
   margin: 0 auto;
 }

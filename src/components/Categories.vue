@@ -4,9 +4,10 @@
     <div class="categories">
       <CategoryCard
         v-for="(category, index) in categories"
-        :key="index"
+        :key="category.id"
         :imageUrl="category.imageUrl"
         :categoryName="category.name"
+        @click="$router.push(`/category/${category.id}`)"
       />
     </div>
   </section>
@@ -18,6 +19,7 @@ import CategoryCard from "./CategoryCard.vue";
 import HomeTitle from "./HomeTitle.vue";
 
 interface Category {
+  id: number;
   name: string;
   imageUrl: string;
 }
@@ -28,27 +30,33 @@ export default defineComponent({
   data() {
     return {
       categories: [
-        {
+        { 
+          id: 1,
           name: "Phones",
           imageUrl: "/images/Phones.svg",
         },
         {
+          id: 2,
           name: "Smart Watches",
           imageUrl: "/images/SmartWatches.svg",
         },
         {
+          id: 3,
           name: "Cameras",
           imageUrl: "/images/Cameras.svg",
         },
         {
+          id: 4,
           name: "Headphones",
           imageUrl: "/images/Headphones.svg",
         },
         {
+          id: 5,
           name: "Computers",
           imageUrl: "/images/Computers.svg",
         },
         {
+          id: 6,
           name: "Gaming",
           imageUrl: "/images/Gaming.svg",
         },
