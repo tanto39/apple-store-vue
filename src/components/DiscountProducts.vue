@@ -12,7 +12,7 @@ import ProductGrid from "./ProductGrid.vue";
 import { Product } from "../types/Product";
 
 export default defineComponent({
-  name: "ProductsHome",
+  name: "DiscountProducts",
   components: {
     HomeTitle,
     ProductGrid,
@@ -58,19 +58,21 @@ export default defineComponent({
 
 <style scoped>
 .discount-products {
-  padding: 56px 160px;
+  padding: 56px 0;
+  max-width: 1120px;
+  margin: 0 auto;
   gap: 32px;
 }
 
 @media (max-width: 991px) {
   .discount-products {
-    padding: 40px;
+    padding: 40px 0;
   }
 }
 
 @media (max-width: 640px) {
   .discount-products {
-    padding: 20px;
+    padding: 20px 0;
   }
 }
 </style>

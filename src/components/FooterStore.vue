@@ -1,54 +1,56 @@
 <template>
   <footer class="footer">
-    <div class="footer-content">
-      <div class="logo-section">
-        <router-link class="logo" to="/">
-          <img src="../assets/LogoFooter.svg" alt="" />
-        </router-link>
-        <p class="description">
-          We are a residential interior design firm located in Portland. Our boutique-studio offers more than
-        </p>
+    <div class="footer-inner">
+      <div class="footer-content">
+        <div class="logo-section">
+          <router-link class="logo" to="/">
+            <img src="../assets/LogoFooter.svg" alt="" />
+          </router-link>
+          <p class="description">
+            We are a residential interior design firm located in Portland. Our boutique-studio offers more than
+          </p>
+        </div>
+
+        <nav class="footer-nav">
+          <div class="nav-column">
+            <h2 class="nav-title">Services</h2>
+            <ul class="nav-list">
+              <li><a href="#" class="nav-link">Bonus program</a></li>
+              <li><a href="#" class="nav-link">Gift cards</a></li>
+              <li><a href="#" class="nav-link">Credit and payment</a></li>
+              <li><a href="#" class="nav-link">Service contracts</a></li>
+              <li><a href="#" class="nav-link">Non-cash account</a></li>
+              <li><a href="#" class="nav-link">Payment</a></li>
+            </ul>
+          </div>
+          <div class="nav-column">
+            <h2 class="nav-title">Assistance to the buyer</h2>
+            <ul class="nav-list">
+              <li><a href="#" class="nav-link">Find an order</a></li>
+              <li><a href="#" class="nav-link">Terms of delivery</a></li>
+              <li><a href="#" class="nav-link">Exchange and return of goods</a></li>
+              <li><a href="#" class="nav-link">Guarantee</a></li>
+              <li><a href="#" class="nav-link">Frequently asked questions</a></li>
+              <li><a href="#" class="nav-link">Terms of use of the site</a></li>
+            </ul>
+          </div>
+        </nav>
       </div>
 
-      <nav class="footer-nav">
-        <div class="nav-column">
-          <h2 class="nav-title">Services</h2>
-          <ul class="nav-list">
-            <li><a href="#" class="nav-link">Bonus program</a></li>
-            <li><a href="#" class="nav-link">Gift cards</a></li>
-            <li><a href="#" class="nav-link">Credit and payment</a></li>
-            <li><a href="#" class="nav-link">Service contracts</a></li>
-            <li><a href="#" class="nav-link">Non-cash account</a></li>
-            <li><a href="#" class="nav-link">Payment</a></li>
-          </ul>
-        </div>
-        <div class="nav-column">
-          <h2 class="nav-title">Assistance to the buyer</h2>
-          <ul class="nav-list">
-            <li><a href="#" class="nav-link">Find an order</a></li>
-            <li><a href="#" class="nav-link">Terms of delivery</a></li>
-            <li><a href="#" class="nav-link">Exchange and return of goods</a></li>
-            <li><a href="#" class="nav-link">Guarantee</a></li>
-            <li><a href="#" class="nav-link">Frequently asked questions</a></li>
-            <li><a href="#" class="nav-link">Terms of use of the site</a></li>
-          </ul>
-        </div>
-      </nav>
-    </div>
-
-    <div class="social-icons">
-      <a href="#" class="social-link" aria-label="Twitter">
-        <img class="logo" src="../assets/Twitter.svg" alt="Twitter" />
-      </a>
-      <a href="#" class="social-link" aria-label="Facebook">
-        <img class="logo" src="../assets/Facebook.svg" alt="Facebook" />
-      </a>
-      <a href="#" class="social-link" aria-label="TikTok">
-        <img class="logo" src="../assets/tiktok.svg" alt="TikTok" />
-      </a>
-      <a href="#" class="social-link" aria-label="Instagram">
-        <img class="logo" src="../assets/Instagram.svg" alt="Instagram" />
-      </a>
+      <div class="social-icons">
+        <a href="#" class="social-link" aria-label="Twitter">
+          <img class="logo" src="../assets/Twitter.svg" alt="Twitter" />
+        </a>
+        <a href="#" class="social-link" aria-label="Facebook">
+          <img class="logo" src="../assets/Facebook.svg" alt="Facebook" />
+        </a>
+        <a href="#" class="social-link" aria-label="TikTok">
+          <img class="logo" src="../assets/tiktok.svg" alt="TikTok" />
+        </a>
+        <a href="#" class="social-link" aria-label="Instagram">
+          <img class="logo" src="../assets/Instagram.svg" alt="Instagram" />
+        </a>
+      </div>
     </div>
   </footer>
 </template>
@@ -63,8 +65,13 @@ export default defineComponent({
 
 <style scoped>
 .footer {
-  padding: 104px 160px;
   background-color: #000;
+}
+
+.footer-inner {
+  padding: 104px 0;
+  max-width: 1120px;
+  margin: 0 auto;
 }
 
 .footer-content {
@@ -76,8 +83,8 @@ export default defineComponent({
 }
 
 @media (max-width: 991px) {
-  .footer {
-    padding: 80px 40px;
+  .footer-inner {
+    padding: 80px 0;
   }
   .footer-content {
     flex-direction: column;
@@ -85,8 +92,8 @@ export default defineComponent({
 }
 
 @media (max-width: 640px) {
-  .footer {
-    padding: 40px 20px;
+  .footer-inner {
+    padding: 40px 0;
   }
 }
 

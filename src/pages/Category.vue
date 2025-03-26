@@ -90,7 +90,9 @@ export default defineComponent({
 <style scoped>
   .category {
     display: flex;
-    padding: 24px 160px 56px 160px;
+    padding: 24px 0 56px 0;
+    max-width: 1120px;
+    margin: 0 auto;
   }
   .product-list {
     margin: 0 0 0 32px;

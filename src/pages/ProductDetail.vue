@@ -1,11 +1,16 @@
 <template>
   <article class="product-details">
-    <ImageGallery :images="images" :main-image="mainImage" @select-image="handleImageSelect" />
-    <section class="product-content">
-      <ProductInfo title="Apple iPhone 14 Pro Max" :current-price="1399" :original-price="1499" />
-      <ProductActions @add-to-wishlist="handleAddToWishlist" @add-to-cart="handleAddToCart" />
-      <DeliveryFeatures :features="deliveryFeatures" />
-    </section>
+    <div class="product-details__main">
+      <ImageGallery :images="images" :main-image="mainImage" @select-image="handleImageSelect" />
+      <section class="product-content">
+        <ProductInfo title="Apple iPhone 14 Pro Max" :current-price="1399" :original-price="1499" />
+        <ProductActions @add-to-wishlist="handleAddToWishlist" @add-to-cart="handleAddToCart" />
+        <DeliveryFeatures :features="deliveryFeatures" />
+      </section>
+    </div>
+    <ProductDetails />
+    <Rating />
+    <RelatedProducts />
   </article>
 </template>
 
@@ -15,7 +20,10 @@ import ImageGallery from "../components/ImageGallery.vue";
 import ProductInfo from "../components/ProductInfo.vue";
 import ProductActions from "../components/ProductActions.vue";
 import DeliveryFeatures from "../components/DeliveryFeatures.vue";
+import ProductDetails from "../components/ProductDetails.vue";
 import type { ProductImage, DeliveryFeature } from "../types/Product";
+import RelatedProducts from "../components/RelatedProducts.vue";
+import Rating from "../components/Rating.vue";
 
 const images = ref<ProductImage[]>([
   {
@@ -33,17 +41,17 @@ const mainImage = ref<ProductImage>({
 
 const deliveryFeatures: DeliveryFeature[] = [
   {
-    icon: '/images/delivery.svg',
+    icon: "/images/delivery.svg",
     title: "Free Delivery",
     subtitle: "1-2 day",
   },
   {
-    icon: '/images/stock.svg',
+    icon: "/images/stock.svg",
     title: "In Stock",
     subtitle: "Today",
   },
   {
-    icon: '/images/Guaranteed.svg',
+    icon: "/images/Guaranteed.svg",
     title: "Guaranteed",
     subtitle: "1 year",
   },
@@ -69,9 +77,11 @@ const handleAddToCart = () => {
 </script>
 
 <style scoped>
-.product-details {
+.product-details__main {
   display: flex;
   padding: 112px 0;
+  max-width: 1120px;
+  margin: 0 auto;
   align-items: center;
   gap: 48px;
 }
@@ -85,7 +95,7 @@ const handleAddToCart = () => {
 }
 
 @media (max-width: 991px) {
-  .product-details {
+  .product-details__main {
     flex-direction: column;
     padding: 48px 0;
   }
@@ -96,8 +106,8 @@ const handleAddToCart = () => {
 }
 
 @media (max-width: 640px) {
-  .product-details {
-    padding: 24px 16px;
+  .product-details__main {
+    padding: 24px 0;
   }
 }
 </style>

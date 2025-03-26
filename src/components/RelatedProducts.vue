@@ -1,20 +1,20 @@
 <template>
-  <section class="products-home">
-    <TagTabs />
+  <section class="related-products">
+    <HomeTitle title="Related Products" />
     <ProductGrid :products="products" />
   </section>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import TagTabs from "./TagTabs.vue";
+import HomeTitle from "./HomeTitle.vue";
 import ProductGrid from "./ProductGrid.vue";
 import { Product } from "../types/Product";
 
 export default defineComponent({
-  name: "ProductsHome",
+  name: "RelatedProducts",
   components: {
-    TagTabs,
+    HomeTitle,
     ProductGrid,
   },
   setup() {
@@ -47,36 +47,8 @@ export default defineComponent({
         title: "AirPods Max Silver",
         price: "$549",
       },
-      {
-        id: "5",
-        image: "/images/product-card.png",
-        altText: "Galaxy Watch",
-        title: "Samsung Galaxy Watch6 Classic 47mm Black",
-        price: "$369",
-      },
-      {
-        id: "6",
-        image: "/images/product-card.png",
-        altText: "Galaxy Z Fold",
-        title: "Galaxy Z Fold5 Unlocked | 256GB | Phantom Black",
-        price: "$1799",
-      },
-      {
-        id: "7",
-        image: "/images/product-card.png",
-        altText: "Galaxy Buds",
-        title: "Galaxy Buds FE Graphite",
-        price: "$99.99",
-      },
-      {
-        id: "8",
-        image: "/images/product-card.png",
-        altText: "iPad",
-        title: 'Apple iPad 9 10.2" 64GB Wi-Fi Silver (MK2L3) 2021',
-        price: "$398",
-      },
+      
     ];
-
     return {
       products,
     };
@@ -85,25 +57,21 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.products-home {
-  display: flex;
-  flex-direction: column;
+.related-products {
   padding: 56px 0;
   max-width: 1120px;
   margin: 0 auto;
-  align-items: flex-start;
   gap: 32px;
-  background-color: #fff;
 }
 
 @media (max-width: 991px) {
-  .products-home {
+  .related-products {
     padding: 40px 0;
   }
 }
 
 @media (max-width: 640px) {
-  .products-home {
+  .related-products {
     padding: 20px 0;
   }
 }

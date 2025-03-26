@@ -68,7 +68,9 @@ export default defineComponent({
 
 <style scoped>
 .categories-section {
-  padding: 80px 160px;
+  padding: 80px 0;
+  max-width: 1120px;
+  margin: 0 auto;
 }
 .categories {
   display: flex;

@@ -43,9 +43,6 @@ defineProps<{
   border-radius: 11px;
   background: #F6F6F6;
 }
-.feature-icon__img {
-  
-}
 
 .feature-content {
   display: flex;

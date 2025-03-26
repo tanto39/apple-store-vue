@@ -8,7 +8,7 @@
       <router-link to="/">
         <img alt="" src="../assets/Favorite.svg" />
       </router-link>
-      <router-link to="/">
+      <router-link to="/cart">
         <img alt="" src="../assets/Cart.svg" />
       </router-link>
     </div>
