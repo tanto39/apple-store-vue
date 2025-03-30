@@ -1,8 +1,9 @@
 import { createStore } from 'vuex'
+import categoryModule from '@/store/modules/CategoryModule';
+import { RootState } from '@/types/RootState';
 
 export default createStore({
-  state: {
-  },
+  state: {} as RootState,
   getters: {
   },
   mutations: {
@@ -10,5 +11,6 @@ export default createStore({
   actions: {
   },
   modules: {
+    category: categoryModule
   }
 })

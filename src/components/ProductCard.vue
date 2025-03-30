@@ -3,11 +3,11 @@
     <div class="product-card__favorite">
       <FavoriteButton :is-active="isFavorite" @toggle="toggleFavorite" />
     </div>
-    <img :src="product.image" :alt="product.altText" class="product-card__image" />
+    <img :src="product.images[0]" :alt="product.name" class="product-card__image" />
     <div class="product-card__content">
       <div class="product-card__info">
-        <h3 class="product-card__title">{{ product.title }}</h3>
-        <p class="product-card__price">{{ product.price }}</p>
+        <h3 class="product-card__title">{{ product.name }}</h3>
+        <p class="product-card__price">${{ product.price }}</p>
       </div>
       <ButtonStore class="product-card__button">Buy Now</ButtonStore>
     </div>

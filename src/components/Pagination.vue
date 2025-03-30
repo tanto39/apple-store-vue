@@ -46,7 +46,6 @@ export default defineComponent({
   padding: 40px 0 0 0;
   align-items: center;
   gap: 16px;
-  font-family: ABeeZee, -apple-system, Roboto, Helvetica, sans-serif;
   font-style: italic;
   font-size: 16px;
   color: #000;
@@ -72,7 +71,6 @@ export default defineComponent({
   padding-bottom: 3px;
   gap: 4px;
   align-items: flex-end;
-  font-family: ABeeZee, -apple-system, Roboto, Helvetica, sans-serif;
   font-style: italic;
 }
 .nav-button {

@@ -11,8 +11,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
-import type { Product } from "../types/Product";
+import { defineComponent } from "vue";
+import { Product, productList } from "../types/Product";
 import CartItem from "./CartItem.vue";
 
 export interface QuantityChangeEvent {
@@ -26,42 +26,17 @@ export default defineComponent({
     CartItem,
   },
   setup() {
-    const products = ref<Product[]>([
-      {
-        id: "1",
-        title: "Apple iPhone 14 Pro Max 128Gb Deep Purple",
-        sku: "#25139526913984",
-        price: "1399",
-        image: "/images/product-card.png",
-        quantity: 1,
-      },
-      {
-        id: "2",
-        title: "AirPods Max Silver",
-        sku: "#53459358345",
-        price: "549",
-        image: "/images/product-card.png",
-        quantity: 1,
-      },
-      {
-        id: "3",
-        title: "Apple Watch Series 9 GPS 41mm Starlight Aluminium",
-        sku: "#63632324",
-        price: "399",
-        image: "/images/product-card.png",
-        quantity: 1,
-      },
-    ]);
+    const products: Product[] = productList;
 
     const handleQuantityChange = (event: QuantityChangeEvent) => {
-      const index = products.value.findIndex((p) => p.id === event.productId);
-      if (index !== -1) {
-        products.value[index].quantity = event.quantity;
-      }
+      // const index = products.findIndex((p) => p.id === event.productId);
+      // if (index !== -1) {
+      //   products.[index].quantity = event.quantity;
+      // }
     };
 
-    const handleRemove = (productId: string) => {
-      products.value = products.value.filter((p) => p.id !== productId);
+    const handleRemove = (productId: number) => {
+      //products = products.filter((p) => p.id !== productId);
     };
 
     return {

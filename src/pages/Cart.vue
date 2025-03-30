@@ -1,16 +1,18 @@
 <template>
   <div class="container">
     <ShoppingCart />
+    <OrderSummary />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import ShoppingCart from "@/components/ShoppingCart.vue";
+import OrderSummary from "@/components/OrderSummary.vue";
 
 export default defineComponent({
   name: "Cart",
-  components: { ShoppingCart },
+  components: { ShoppingCart, OrderSummary },
 });
 </script>
 

@@ -23,7 +23,7 @@ type SortOption = {
 const options: SortOption[] = [
   { value: 'rating', label: 'By rating' },
   { value: 'price', label: 'By price' },
-  { value: 'delivery', label: 'By delivery' }
+  { value: 'createdAt', label: 'By delivery' }
 ];
 
 const isOpen = ref(false);

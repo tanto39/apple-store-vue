@@ -5,7 +5,7 @@
     </router-link>
     <SearchInput />
     <div class="header__buttons">
-      <router-link to="/">
+      <router-link to="/favorites">
         <img alt="" src="../assets/Favorite.svg" />
       </router-link>
       <router-link to="/cart">
@@ -34,6 +34,8 @@ export default defineComponent({
 }
 .header__buttons {
   display: flex;
+  width: 60px;
+  justify-content: space-between;
 }
 
 @media (max-width: 991px) {

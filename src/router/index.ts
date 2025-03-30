@@ -3,6 +3,7 @@ import Home from '../pages/Home.vue'
 import Category from '../pages/Category.vue'
 import ProductDetail from '../pages/ProductDetail.vue'
 import Cart from '../pages/Cart.vue'
+import Favorites from '../pages/Favorites.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -24,6 +25,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/cart',
     name: 'Cart',
     component: Cart
+  },
+  {
+    path: '/favorites',
+    name: 'Favorites',
+    component: Favorites
   },
 ]
 

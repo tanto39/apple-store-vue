@@ -1,12 +1,12 @@
 <template>
   <article class="product-item">
     <div class="product-image">
-      <img :src="product.image" :alt="product.title" width="90" height="90" />
+      <img :src="product.images[0]" :alt="product.name" width="90" height="90" />
     </div>
     <div class="product-content">
       <div class="product-info">
-        <h3 class="product-name">{{ product.title }}</h3>
-        <p class="product-sku">{{ product.sku }}</p>
+        <h3 class="product-name">{{ product.name }}</h3>
+        <p class="product-sku">#{{ product.id }}</p>
       </div>
       <div class="product-actions">
         <QuantityControl v-model="localQuantity" @update:modelValue="updateQuantity" />
