@@ -9,49 +9,56 @@
         <p class="product-sku">#{{ product.id }}</p>
       </div>
       <div class="product-actions">
-        <QuantityControl v-model="localQuantity" @update:modelValue="updateQuantity" />
+        <QuantityControl v-model="quantity" />
         <span class="product-price">${{ product.price }}</span>
-        <button type="button" class="icon-button" @click="$emit('remove')"></button>
+        <button 
+          type="button" 
+          class="icon-button" 
+          @click="handleRemove"
+        ></button>
       </div>
     </div>
   </article>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch } from "vue";
+import { defineComponent, computed } from "vue";
+import { useStore } from "vuex";
 import type { Product } from "../types/Product";
-import QuantityControl from "./QuantityControl.vue";
+import QuantityControl from "../components/UI/QuantityControl.vue";
+import { QuantityChangeEvent } from "../types/Cart";
 
 export default defineComponent({
-  name: "ProductItem",
+  name: "CartItem",
   components: { QuantityControl },
   props: {
     product: {
-      type: Object as () => Product,
+      type: Object as () => Product & { quantity: number },
       required: true,
     },
   },
   emits: ["update:quantity", "remove"],
   setup(props, { emit }) {
-    const localQuantity = ref(props.product.quantity);
+    const store = useStore();
 
-    watch(
-      () => props.product.quantity,
-      (newVal) => {
-        localQuantity.value = newVal;
+    const quantity = computed({
+      get: () => props.product.quantity,
+      set: (value) => {
+        const payload: QuantityChangeEvent = {
+          productId: props.product.id,
+          quantity: value
+        };
+        store.dispatch("cart/updateQuantity", payload);
       }
-    );
+    });
 
-    const updateQuantity = (quantity: number) => {
-      emit("update:quantity", {
-        productId: props.product.id,
-        quantity,
-      });
+    const handleRemove = () => {
+      store.dispatch("cart/removeFromCart", props.product.id);
     };
 
     return {
-      localQuantity,
-      updateQuantity,
+      quantity,
+      handleRemove
     };
   },
 });
@@ -72,6 +79,10 @@ export default defineComponent({
   height: 90px;
   justify-content: center;
   align-items: center;
+}
+
+product-image__img {
+  width: 100%;
 }
 
 .product-content {

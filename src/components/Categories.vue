@@ -31,7 +31,7 @@ export default defineComponent({
     return {
       categories: [
         { 
-          id: 1,
+          id: 2,
           name: "Phones",
           imageUrl: "/images/Phones.svg",
         },

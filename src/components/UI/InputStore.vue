@@ -2,7 +2,13 @@
   <div class="input-group">
     <label v-if="label" class="input-label">{{ label }}</label>
     <div class="input-wrap">
-      <input type="text" class="input-field" :placeholder="placeholder" />
+      <input
+        type="text"
+        class="input-field"
+        :placeholder="placeholder"
+        :value="modelValue"
+        @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
+      />
       <button v-if="buttonTitle" class="apply-button">{{ buttonTitle }}</button>
     </div>
   </div>
@@ -12,12 +18,14 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "SearchInput",
+  name: "InputStore",
   props: {
     buttonTitle: { type: String },
     placeholder: { type: String },
     label: { type: String },
+    modelValue: { type: String },
   },
+  emits: ["update:modelValue"],
 });
 </script>
 
@@ -43,12 +51,7 @@ export default defineComponent({
   border-radius: 7px;
   border: 0.5px solid #9f9f9f;
   background-color: #fff;
-  font-family:
-    Abel,
-    -apple-system,
-    Roboto,
-    Helvetica,
-    sans-serif;
+  font-family: Abel, -apple-system, Roboto, Helvetica, sans-serif;
   color: rgba(151, 151, 151, 1);
   font-size: 14px;
   letter-spacing: -0.07px;

@@ -9,13 +9,16 @@
         <h3 class="product-card__title">{{ product.name }}</h3>
         <p class="product-card__price">${{ product.price }}</p>
       </div>
-      <ButtonStore class="product-card__button">Buy Now</ButtonStore>
+      <ButtonStore class="product-card__button" @click.stop="toggleCart">
+        {{ isInCart ? "Added" : "Buy Now" }}
+      </ButtonStore>
     </div>
   </article>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, computed, ref } from "vue";
+import { useStore } from "vuex";
 import { Product } from "../types/Product";
 
 export default defineComponent({
@@ -26,15 +29,31 @@ export default defineComponent({
       required: true,
     },
   },
-  setup() {
+  setup(props) {
+    const store = useStore();
     const isFavorite = ref(false);
-    const toggleFavorite = () => {
+
+    const isInCart = computed(() =>
+      store.getters["cart/cartItems"].some((item: Product) => item.id === props.product.id)
+    );
+
+    const toggleCart = (event) => {
+      event.stopPropagation();
+      if (!isInCart.value) {
+        store.dispatch("cart/addToCart", props.product);
+      }
+    };
+
+    const toggleFavorite = (event) => {
+      event.stopPropagation();
       isFavorite.value = !isFavorite.value;
     };
 
     return {
       isFavorite,
+      isInCart,
       toggleFavorite,
+      toggleCart,
     };
   },
 });

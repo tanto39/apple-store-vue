@@ -12,31 +12,47 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import { ref } from 'vue';
+<script lang="ts">
+import { defineComponent, ref } from 'vue';
+import { useStore } from 'vuex';
 
 type SortOption = {
-  value: string;
+  value: 'rating' | 'price' | 'createdAt';
   label: string;
 };
 
-const options: SortOption[] = [
-  { value: 'rating', label: 'By rating' },
-  { value: 'price', label: 'By price' },
-  { value: 'createdAt', label: 'By delivery' }
-];
+export default defineComponent({
+  name: "Sort",
+  setup() {
+    const store = useStore();
+    const options: SortOption[] = [
+      { value: 'rating', label: 'By rating' },
+      { value: 'price', label: 'By price' },
+      { value: 'createdAt', label: 'By delivery' }
+    ];
 
-const isOpen = ref(false);
-const selectedOption = ref(options[0].label);
+    const isOpen = ref(false);
+    const selectedOption = ref(options[0].label);
 
-const toggleDropdown = () => {
-  isOpen.value = !isOpen.value;
-};
+    const toggleDropdown = () => {
+      isOpen.value = !isOpen.value;
+    };
 
-const selectOption = (option: SortOption) => {
-  selectedOption.value = option.label;
-  isOpen.value = false;
-};
+    const selectOption = (option: SortOption) => {
+      selectedOption.value = option.label;
+      store.commit('category/SET_SORT', option.value);
+      isOpen.value = false;
+    };
+
+    return {
+      options,
+      isOpen,
+      selectedOption,
+      toggleDropdown,
+      selectOption
+    };
+  }
+});
 </script>
 
 <style scoped>

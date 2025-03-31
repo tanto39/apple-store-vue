@@ -2,7 +2,7 @@
   <header class="category-bar">
     <section class="counter-container">
       <span class="counter-label">Selected Products:</span>
-      <span class="counter-value">85</span>
+      <span class="counter-value">{{ totalProducts }}</span>
     </section>
 
     <Sort label="By rating" :is-open="isFilterOpen" @click="toggleFilter" />
@@ -10,7 +10,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, computed, ref } from "vue";
+import { useStore } from "vuex";
 import Sort from "./Sort.vue";
 
 export default defineComponent({
@@ -19,13 +20,19 @@ export default defineComponent({
     Sort,
   },
   setup() {
+    const store = useStore();
     const isFilterOpen = ref(false);
+
+    const totalProducts = computed(() => {
+      return store.getters["category/filteredProducts"]?.length || 0;
+    });
 
     const toggleFilter = () => {
       isFilterOpen.value = !isFilterOpen.value;
     };
 
     return {
+      totalProducts,
       isFilterOpen,
       toggleFilter,
     };

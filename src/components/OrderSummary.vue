@@ -1,48 +1,103 @@
 <template>
-  <section class="summary">
+  <section v-if="cartItems[0]" class="summary">
     <h2 class="order-summary">Order Summary</h2>
     <div class="content">
       <div class="summary-block">
         <div class="input-fields">
-          <InputStore placeholder="Code" label="Discount code / Promo code" />
-          <InputStore placeholder="Enter Card Number" label="Your bonus card number" buttonTitle="Apply" />
+          <InputStore v-model="discountCode" placeholder="Code" label="Discount code / Promo code" />
+          <InputStore
+            v-model="bonusCard"
+            placeholder="Enter Card Number"
+            label="Your bonus card number"
+            buttonTitle="Apply"
+          />
         </div>
 
         <div class="prices">
           <div class="price-row subtotal">
             <span class="price-label">Subtotal</span>
-            <span class="price-amount">$2347</span>
+            <span class="price-amount">${{ subtotal.toFixed(2) }}</span>
           </div>
 
           <div class="taxes">
             <div class="price-row">
               <span class="price-label secondary">Estimated Tax</span>
-              <span class="price-amount">$50</span>
+              <span class="price-amount">${{ estimatedTax.toFixed(2) }}</span>
             </div>
             <div class="price-row">
               <span class="price-label secondary">Estimated shipping & Handling</span>
-              <span class="price-amount">$29</span>
+              <span class="price-amount">${{ estimatedShipping.toFixed(2) }}</span>
             </div>
           </div>
 
           <div class="price-row total">
             <span class="price-label">Total</span>
-            <span class="price-amount">$2426</span>
+            <span class="price-amount">${{ total.toFixed(2) }}</span>
           </div>
         </div>
       </div>
-      <ButtonStore class="checkout-button">Checkout</ButtonStore>
+      <ButtonStore class="checkout-button" @click="handleCheckout">Checkout</ButtonStore>
     </div>
   </section>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, computed, ref } from "vue";
+import { useStore } from "vuex";
 import InputStore from "../components/UI/InputStore.vue";
+import { createOrder } from "../services/orderService";
+import { OrderData } from "../types/Order";
 
 export default defineComponent({
   name: "OrderSummary",
   components: { InputStore },
+  setup() {
+    const store = useStore();
+    const discountCode = ref("");
+    const bonusCard = ref("");
+
+    const cartItems = computed(() => store.getters["cart/cartItems"]);
+
+    const total = computed(() =>
+      cartItems.value.reduce((acc: number, item: any) => acc + item.price * item.quantity, 0)
+    );
+
+    const estimatedTax = computed(() => total.value * 0.13);
+    const estimatedShipping = computed(() => total.value * 0.08);
+    const subtotal = computed(() => total.value - estimatedTax.value - estimatedShipping.value);
+
+    const prepareOrderData = (): OrderData => ({
+      discountCode: discountCode.value,
+      bonusCard: bonusCard.value,
+      items: cartItems.value.map((item) => ({
+        productId: item.id,
+        quantity: item.quantity,
+        price: item.price,
+      })),
+      totals: {
+        subtotal: subtotal.value,
+        tax: estimatedTax.value,
+        shipping: estimatedShipping.value,
+        total: total.value,
+      },
+    });
+
+    const handleCheckout = async () => {
+      await createOrder(prepareOrderData());
+      store.dispatch("cart/clearCart");
+    };
+
+    return {
+      discountCode,
+      bonusCard,
+      total,
+      estimatedTax,
+      estimatedShipping,
+      subtotal,
+      handleCheckout,
+      cartItems,
+    };
+  },
 });
 </script>
 
@@ -89,7 +144,6 @@ export default defineComponent({
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  font-family: ABeeZee, -apple-system, Roboto, Helvetica, sans-serif;
   letter-spacing: 0.48px;
 }
 

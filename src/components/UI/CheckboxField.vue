@@ -1,5 +1,8 @@
 <template>
-  <label :class="['checkbox-field', { 'checkbox-field_selected': modelValue }]">
+  <label 
+    :class="['checkbox-field', { 'checkbox-field_selected': modelValue }]"
+    @click.prevent="handleClick"
+  >
     <div
       :class="['checkbox-indicator', { 'checkbox-indicator_selected': modelValue }]"
       role="checkbox"
@@ -12,16 +15,36 @@
   </label>
 </template>
 
-<script setup lang="ts">
-defineProps<{
-  label: string;
-  count: number;
-  modelValue?: boolean;
-}>();
+<script lang="ts">
+import { defineComponent } from "vue";
 
-defineEmits<{
-  (e: "update:modelValue", value: boolean): void;
-}>();
+export default defineComponent({
+  name: "CheckboxField",
+  props: {
+    label: {
+      type: String,
+      required: true
+    },
+    count: {
+      type: Number,
+      required: true
+    },
+    modelValue: {
+      type: Boolean,
+      required: true
+    }
+  },
+  emits: ["update:modelValue"],
+  setup(props, { emit }) {
+    const handleClick = () => {
+      emit("update:modelValue", !props.modelValue);
+    };
+
+    return {
+      handleClick
+    };
+  }
+});
 </script>
 
 <style scoped>

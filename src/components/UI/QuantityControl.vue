@@ -61,9 +61,9 @@ input::-webkit-inner-spin-button {
   cursor: pointer;
 }
 .icon-minus {
-  background: url("../assets/minus.svg") center center no-repeat;
+  background: url("../../assets/minus.svg") center center no-repeat;
 }
 .icon-plus {
-  background: url("../assets/plus.svg") center center no-repeat;
+  background: url("../../assets/plus.svg") center center no-repeat;
 }
 </style>

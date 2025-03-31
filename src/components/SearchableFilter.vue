@@ -1,35 +1,72 @@
 <template>
   <div class="searchable-filter">
-    <SearchInput class="search-field"/>
+    <SearchInput v-model="searchQuery" class="search-field" />
     <div class="options-list">
       <CheckboxField
         v-for="option in filteredOptions"
         :key="option.label"
         :label="option.label"
         :count="option.count"
-        v-model="option.selected"
+        :modelValue="isSelected(option.label)"
+        @update:modelValue="toggleOption(option.label)"
       />
     </div>
   </div>
 </template>
 
-<script setup lang="ts">
-import { ref, computed } from "vue";
+<script lang="ts">
+import { defineComponent, ref, computed, PropType } from "vue";
 import CheckboxField from "../components/UI/CheckboxField.vue";
-import FilterOption from "../types/Filter";
+import SearchInput from "../components/UI/SearchInput.vue";
+import { FilterOption } from "../types/Filter";
 
-const props = defineProps<{
-  options: FilterOption[];
-  placeholder?: string;
-}>();
+export default defineComponent({
+  name: "SearchableFilter",
+  components: {
+    CheckboxField,
+    SearchInput,
+  },
+  props: {
+    options: {
+      type: Array as PropType<FilterOption[]>,
+      required: true,
+    },
+    selected: {
+      type: Array as PropType<string[]>,
+      default: () => [],
+    },
+    placeholder: {
+      type: String,
+      default: "",
+    },
+  },
+  emits: ["update:selected"],
+  setup(props, { emit }) {
+    const searchQuery = ref("");
 
-const searchQuery = ref("");
+    const isSelected = (label: string) => {
+      return props.selected.includes(label);
+    };
 
-const filteredOptions = computed(() => {
-  if (!searchQuery.value) return props.options;
-  return props.options.filter((option) =>
-    option.label.toLowerCase().includes(searchQuery.value.toLowerCase()),
-  );
+    const filteredOptions = computed(() => {
+      return props.options.filter((option) => option.label.toLowerCase().includes(searchQuery.value.toLowerCase()));
+    });
+
+    const toggleOption = (label: string) => {
+      const newSelected = props.selected.includes(label)
+        ? props.selected.filter((item) => item !== label)
+        : [...props.selected, label];
+
+      emit("update:selected", newSelected);
+    };
+
+    return {
+      searchQuery,
+      filteredOptions,
+      isSelected,
+      toggleOption,
+    };
+  },
 });
 </script>
 

@@ -1,42 +1,63 @@
 <template>
   <nav class="pagination" aria-label="Pagination">
-    <button type="button" class="nav-button">
+    <button @click="prevPage" class="nav-button">
       <img src="/images/pag-left.svg" class="nav-icon" alt="" />
     </button>
 
     <div class="page-numbers">
-      <PaginationButton :isActive="currentPage === 1"> 1 </PaginationButton>
-
-      <PaginationButton :isActive="currentPage === 2"> 2 </PaginationButton>
-
-      <PaginationButton :isActive="currentPage === 3"> 3 </PaginationButton>
-
-      <span class="ellipsis" aria-hidden="true">...</span>
-
-      <PaginationButton :isActive="currentPage === 12"> 12 </PaginationButton>
+      <PaginationButton 
+        v-for="page in pages"
+        :key="page"
+        :isActive="currentPage === page"
+        @click="setPage(page)"
+      >
+        {{ page }}
+      </PaginationButton>
     </div>
 
-    <button type="button" class="nav-button">
+    <button @click="nextPage" class="nav-button">
       <img src="/images/pag-right.svg" class="nav-icon" alt="" />
     </button>
   </nav>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, computed } from "vue";
 import PaginationButton from "./PaginationButton.vue";
 
 export default defineComponent({
   name: "Pagination",
-  components: {
-    PaginationButton,
+  components: { PaginationButton },
+  props: {
+    currentPage: { type: Number, required: true },
+    totalItems: { type: Number, required: true },
+    itemsPerPage: { type: Number, required: true }
   },
-  setup() {
-    const currentPage = ref(1);
-    return {
-      currentPage,
+  emits: ['page-change'],
+  setup(props, { emit }) {
+    const totalPages = computed(() => 
+      Math.ceil(props.totalItems / props.itemsPerPage)
+    );
+
+    const pages = computed(() => {
+      const range: Array<number> = [];
+      for (let i = 1; i <= totalPages.value; i++) {
+        range.push(i);
+      }
+      return range;
+    });
+
+    const setPage = (page: number) => {
+      if (page >= 1 && page <= totalPages.value) {
+        emit('page-change', page);
+      }
     };
-  },
+
+    const prevPage = () => setPage(props.currentPage - 1);
+    const nextPage = () => setPage(props.currentPage + 1);
+
+    return { pages, setPage, prevPage, nextPage };
+  }
 });
 </script>
 
