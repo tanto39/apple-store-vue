@@ -6,6 +6,8 @@ import { fetchCategoryProducts } from "@/services/categoryService";
 
 export interface CategoryState {
   products: Product[];
+  isLoading: boolean;
+  error: string | null;
   filters: {
     priceRange?: [number, number];
     characteristics: Record<string, string[]>;
@@ -19,6 +21,8 @@ const module: Module<CategoryState, RootState> = {
   namespaced: true,
   state: () => ({
     products: [],
+    isLoading: false,
+    error: null,
     filters: {
       characteristics: {},
     },
@@ -27,8 +31,14 @@ const module: Module<CategoryState, RootState> = {
     itemsPerPage: 12,
   }),
   mutations: {
-    SET_PRODUCTS(state, products: Product[]) {
-      state.products = products;
+    SET_LOADING(state, payload: boolean) {
+      state.isLoading = payload;
+    },
+    SET_PRODUCTS(state, payload: Product[]) {
+      state.products = payload;
+    },
+    SET_ERROR(state, payload: string | null) {
+      state.error = payload;
     },
     SET_FILTERS(state, filters) {
       state.filters = filters;
@@ -42,21 +52,30 @@ const module: Module<CategoryState, RootState> = {
   },
   actions: {
     async loadProducts({ commit }, categoryId: number) {
-      const products = await fetchCategoryProducts(categoryId);
-      commit("SET_PRODUCTS", products);
+      try {
+        commit("SET_LOADING", true);
+        commit("SET_ERROR", null);
+
+        const products = await fetchCategoryProducts(categoryId);
+        commit("SET_PRODUCTS", products);
+      } catch (error) {
+        commit("SET_ERROR", error instanceof Error ? error.message : "Unknown error");
+      } finally {
+        commit("SET_LOADING", false);
+      }
     },
   },
   getters: {
     filteredProducts: (state) => {
-      return state.products.filter(product => {
+      return state.products.filter((product) => {
         // Проверка цены
         const price = product.discount_price || product.price;
         const [min, max] = state.filters.priceRange || [0, Infinity];
         if (price < min || price > max) return false;
-  
+
         // Проверка характеристик
         return Object.entries(state.filters.characteristics).every(([key, values]) => {
-          const char = product.characteristics?.find(c => c.characteristic === key);
+          const char = product.characteristics?.find((c) => c.characteristic === key);
           return char && values.includes(char.value);
         });
       });

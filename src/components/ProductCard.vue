@@ -1,5 +1,5 @@
 <template>
-  <article class="product-card" @click="$router.push('/product/1')">
+  <article class="product-card" @click="$router.push(`/product/${product.id}`)">
     <div class="product-card__favorite">
       <FavoriteButton :is-active="isFavorite" @toggle="toggleFavorite" />
     </div>

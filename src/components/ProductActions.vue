@@ -1,19 +1,31 @@
 <template>
   <div class="buttons-container">
-    <ButtonStore class="wishlist-btn" @click="$emit('add-to-wishlist')">Add to Wishlist</ButtonStore>
-    <ButtonStore class="cart-btn" @click="$emit('add-to-cart')">Add to Cart</ButtonStore>
+    <ButtonStore 
+      class="wishlist-btn" 
+      @click="$emit('add-to-wishlist')"
+    >
+      {{ isFavorite ? 'Added to Wishlist' : 'Add to Wishlist' }}
+    </ButtonStore>
+    <ButtonStore 
+      class="cart-btn" 
+      @click="$emit('add-to-cart')"
+    >
+      {{ isInCart ? 'Added to Cart' : 'Add to Cart' }}
+    </ButtonStore>
   </div>
 </template>
 
-<script setup lang="ts">
-// defineProps<{
-//   description: string;
-// }>();
+<script lang="ts">
+import { defineComponent } from 'vue';
 
-defineEmits<{
-  (e: "add-to-wishlist"): void;
-  (e: "add-to-cart"): void;
-}>();
+export default defineComponent({
+  name: 'ProductActions',
+  props: {
+    isInCart: Boolean,
+    isFavorite: Boolean
+  },
+  emits: ['add-to-wishlist', 'add-to-cart']
+});
 </script>
 
 <style scoped>

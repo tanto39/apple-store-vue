@@ -1,6 +1,6 @@
 <template>
   <article class="details-container">
-    <div class="details-content">
+    <div class="details-content" id="details">
       <h2 class="details-title">Details</h2>
       <p class="details-description">
         Just as a book is judged by its cover, the first thing you notice when
@@ -18,8 +18,7 @@
           <SpecificationRow
             v-for="(spec, index) in specifications"
             :key="index"
-            :label="spec.label"
-            :value="spec.value"
+            :spec="spec"
           />
         </dl>
       </section>
@@ -27,29 +26,21 @@
   </article>
 </template>
 
-<script lang="ts" setup>
+<script lang="ts">
+import { defineComponent } from "vue";
+import { Characteristic } from "../types/Product";
 import SpecificationRow from "./SpecificationRow.vue";
-import { SpecificationRowProps } from "./SpecificationRow.vue";
 
-const specifications: SpecificationRowProps[] = [
-  { label: "Screen diagonal", value: '6.7"' },
-  { label: "The screen resolution", value: "2796x1290" },
-  { label: "The screen refresh rate", value: "120 Hz" },
-  { label: "The pixel density", value: "460 ppi" },
-  { label: "Screen type", value: "OLED" },
-  {
-    label: "Additionally",
-    value: [
-      "Dynamic Island",
-      "Always-On display",
-      "HDR display",
-      "True Tone",
-      "Wide color (P3)",
-    ],
-  },
-  { label: "CPU", value: "A16 Bionic" },
-];
-
+export default defineComponent({
+  name: "ProductDetails",
+  components: { SpecificationRow },
+  props: {
+    specifications: {
+      type: Array as () => Characteristic[],
+      required: false,
+    },
+  }
+});
 </script>
 
 <style scoped>

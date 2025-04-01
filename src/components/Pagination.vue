@@ -5,12 +5,7 @@
     </button>
 
     <div class="page-numbers">
-      <PaginationButton 
-        v-for="page in pages"
-        :key="page"
-        :isActive="currentPage === page"
-        @click="setPage(page)"
-      >
+      <PaginationButton v-for="page in pages" :key="page" :isActive="currentPage === page" @click="setPage(page)">
         {{ page }}
       </PaginationButton>
     </div>
@@ -31,13 +26,11 @@ export default defineComponent({
   props: {
     currentPage: { type: Number, required: true },
     totalItems: { type: Number, required: true },
-    itemsPerPage: { type: Number, required: true }
+    itemsPerPage: { type: Number, required: true },
   },
-  emits: ['page-change'],
+  emits: ["page-change"],
   setup(props, { emit }) {
-    const totalPages = computed(() => 
-      Math.ceil(props.totalItems / props.itemsPerPage)
-    );
+    const totalPages = computed(() => Math.ceil(props.totalItems / props.itemsPerPage));
 
     const pages = computed(() => {
       const range: Array<number> = [];
@@ -49,7 +42,7 @@ export default defineComponent({
 
     const setPage = (page: number) => {
       if (page >= 1 && page <= totalPages.value) {
-        emit('page-change', page);
+        emit("page-change", page);
       }
     };
 
@@ -57,7 +50,7 @@ export default defineComponent({
     const nextPage = () => setPage(props.currentPage + 1);
 
     return { pages, setPage, prevPage, nextPage };
-  }
+  },
 });
 </script>
 

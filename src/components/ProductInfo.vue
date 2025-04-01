@@ -3,7 +3,7 @@
     <h1 class="product-title">{{ title }}</h1>
     <div class="price-container">
       <p class="current-price">${{ currentPrice }}</p>
-      <p class="original-price">${{ originalPrice }}</p>
+      <p v-if="originalPrice" class="original-price">${{ originalPrice }}</p>
     </div>
     <SpecificationsList :specifications="specifications" />
     <p class="description">
@@ -14,33 +14,24 @@
   </section>
 </template>
 
-<script setup lang="ts">
-import type { Specification } from "../types/Product";
+<script lang="ts">
+import { defineComponent } from "vue";
+import { Characteristic } from "../types/Product";
 import SpecificationsList from "../components/SpecificationsList.vue";
 
-const specifications: Specification[] = [
-  {
-    icon: '/images/spec-screen.svg',
-    label: "Screen size",
-    value: '6.7"',
-  },
-  {
-    icon: '/images/spec-cpu.svg',
-    label: "CPU",
-    value: "Apple A16 Bionic",
-  },
-];
-
-defineProps<{
-  title: string;
-  currentPrice: number;
-  originalPrice: number;
-}>();
-
-defineEmits<{
-  (e: "read-more"): void;
-}>();
-
+export default defineComponent({
+  name: "ProductDetails",
+  components: { SpecificationsList },
+  props: {
+    title: { type: String, required: true },
+    currentPrice: { type: Number, required: true },
+    originalPrice: { type: [Number, null], required: true },
+    specifications: {
+      type: Array as () => Characteristic[],
+      required: false,
+    },
+  }
+});
 </script>
 
 <style scoped>

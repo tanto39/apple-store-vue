@@ -1,6 +1,6 @@
 <template>
   <section class="features-container">
-    <article v-for="(feature, index) in features" :key="index" class="feature-item">
+    <article v-for="(feature, index) in deliveryFeatures" :key="index" class="feature-item">
       <div class="feature-icon">
         <img class="feature-icon__img" :src="feature.icon" alt=""/>
       </div>
@@ -15,9 +15,23 @@
 <script setup lang="ts">
 import { DeliveryFeature } from "../types/Product";
 
-defineProps<{
-  features: DeliveryFeature[];
-}>();
+const deliveryFeatures: DeliveryFeature[] = [
+  {
+    icon: "/images/delivery.svg",
+    title: "Free Delivery",
+    subtitle: "1-2 day",
+  },
+  {
+    icon: "/images/stock.svg",
+    title: "In Stock",
+    subtitle: "Today",
+  },
+  {
+    icon: "/images/Guaranteed.svg",
+    title: "Guaranteed",
+    subtitle: "1 year",
+  },
+];
 </script>
 
 <style scoped>

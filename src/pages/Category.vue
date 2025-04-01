@@ -4,6 +4,8 @@
       <Filter />
       <div class="product-list">
         <CategoryBar />
+        <Loader v-if="isLoading" />
+        <ErrorMessage v-if="error" :message="error" />
         <ProductGrid v-if="paginatedProducts[0]" :products="paginatedProducts" />
         <p v-else>Products not found.</p>
         <Pagination
@@ -18,9 +20,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from "vue";
-import { useStore } from "vuex";
-import { useRoute } from "vue-router";
+import { defineComponent } from "vue";
+import { useCategory } from "@/hooks/useCategory";
 import Filter from "@/components/Filter.vue";
 import CategoryBar from "@/components/CategoryBar.vue";
 import ProductGrid from "@/components/ProductGrid.vue";
@@ -30,18 +31,16 @@ export default defineComponent({
   name: "Category",
   components: { Filter, ProductGrid, CategoryBar, Pagination },
   setup() {
-    const store = useStore();
-    const route = useRoute();
-    const categoryId = computed(() => parseInt(route.params.id as string));
-
-    store.dispatch("category/loadProducts", categoryId.value);
+    const { paginatedProducts, filteredProducts, currentPage, itemsPerPage, setPage, isLoading, error } = useCategory();
 
     return {
-      paginatedProducts: computed(() => store.getters["category/paginatedProducts"]),
-      filteredProducts: computed(() => store.getters["category/filteredProducts"]),
-      currentPage: computed(() => store.state.category.currentPage),
-      itemsPerPage: computed(() => store.state.category.itemsPerPage),
-      setPage: (page: number) => store.commit("category/SET_PAGE", page),
+      paginatedProducts,
+      filteredProducts,
+      currentPage,
+      itemsPerPage,
+      setPage,
+      isLoading, 
+      error
     };
   },
 });
@@ -56,5 +55,6 @@ export default defineComponent({
 }
 .product-list {
   margin: 0 0 0 32px;
+  width: 100%;
 }
 </style>

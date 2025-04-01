@@ -22,11 +22,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from "vue";
-import { useStore } from "vuex";
+import { defineComponent } from "vue";
 import type { Product } from "../types/Product";
 import QuantityControl from "../components/UI/QuantityControl.vue";
-import { QuantityChangeEvent } from "../types/Cart";
+import { useCartItem } from "@/hooks/useCartItem";
 
 export default defineComponent({
   name: "CartItem",
@@ -39,22 +38,8 @@ export default defineComponent({
   },
   emits: ["update:quantity", "remove"],
   setup(props, { emit }) {
-    const store = useStore();
-
-    const quantity = computed({
-      get: () => props.product.quantity,
-      set: (value) => {
-        const payload: QuantityChangeEvent = {
-          productId: props.product.id,
-          quantity: value
-        };
-        store.dispatch("cart/updateQuantity", payload);
-      }
-    });
-
-    const handleRemove = () => {
-      store.dispatch("cart/removeFromCart", props.product.id);
-    };
+    
+    const {handleRemove, quantity} = useCartItem(props.product);
 
     return {
       quantity,

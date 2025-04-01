@@ -1,21 +1,28 @@
 <template>
   <section class="specs-grid">
     <article v-for="(spec, index) in specifications" :key="index" class="spec-item">
-      <img class="spec-icon" :src="spec.icon" alt=""/>
+      <img class="spec-icon" src="../assets/spec-screen.svg" alt=""/>
       <div class="spec-content">
-        <span class="spec-label">{{ spec.label }}</span>
-        <span class="spec-value">{{ spec.value }}</span>
+        <span class="spec-label">{{ spec.characteristic }}</span>
+        <span class="spec-value">{{ spec.value }} {{ spec.unit_type }}</span>
       </div>
     </article>
   </section>
 </template>
 
-<script setup lang="ts">
-import { Specification } from "../types/Product";
+<script lang="ts">
+import { defineComponent } from "vue";
+import { Characteristic } from "../types/Product";
 
-defineProps<{
-  specifications: Specification[];
-}>();
+export default defineComponent({
+  name: "SpecificationsList",
+  props: {
+    specifications: {
+      type: Array as () => Characteristic[],
+      required: false,
+    },
+  }
+});
 </script>
 
 <style scoped>

@@ -3,7 +3,7 @@
     <h2 class="cart-title">Shopping Cart</h2>
     <div v-if="products[0]" class="cart-items">
       <CartItem
-        v-for="(product) in products"
+        v-for="product in products"
         :key="product.id"
         :product="product"
         @update:quantity="handleQuantityChange"
@@ -15,10 +15,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from "vue";
-import { useStore } from "vuex";
+import { defineComponent } from "vue";
+import { useCart } from "@/hooks/useCart";
 import CartItem from "./CartItem.vue";
-import { QuantityChangeEvent } from "../types/Cart";
 
 export default defineComponent({
   name: "ShoppingCart",
@@ -26,21 +25,7 @@ export default defineComponent({
     CartItem,
   },
   setup() {
-    const store = useStore();
-
-    const products = computed(() => store.getters["cart/cartItems"]);
-
-    const handleQuantityChange = (event: QuantityChangeEvent) => {
-      store.dispatch("cart/updateQuantity", {
-        productId: event.productId,
-        quantity: event.quantity,
-      });
-    };
-
-    const handleRemove = (productId: number) => {
-      store.dispatch("cart/removeFromCart", productId);
-    };
-
+    const { products, handleQuantityChange, handleRemove } = useCart();
     return {
       products,
       handleQuantityChange,

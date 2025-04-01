@@ -20,8 +20,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from "vue";
-import { useStore } from "vuex";
+import { defineComponent } from "vue";
+import { useFilter } from "@/hooks/useFilter";
 import DropdownSection from "./DropdownSection.vue";
 import PriceFilter from "./PriceFilter.vue";
 import SearchableFilter from "./SearchableFilter.vue";
@@ -34,33 +34,7 @@ export default defineComponent({
     SearchableFilter,
   },
   setup() {
-    const store = useStore();
-
-    const characteristics = computed(() => store.getters["category/characteristicsWithCounts"]);
-
-    const selectedCharacteristics = computed(() => store.state.category.filters.characteristics);
-
-    const setPriceRange = (range: [number, number]) => {
-      store.commit("category/SET_FILTERS", {
-        ...store.state.category.filters,
-        priceRange: range,
-      });
-    };
-
-    const setCharacteristicFilter = (charName: string, values: string[]) => {
-      const newCharacteristics = { ...store.state.category.filters.characteristics };
-
-      if (values.length > 0) {
-        newCharacteristics[charName] = values;
-      } else {
-        delete newCharacteristics[charName];
-      }
-
-      store.commit("category/SET_FILTERS", {
-        ...store.state.category.filters,
-        characteristics: newCharacteristics,
-      });
-    };
+    const { characteristics, selectedCharacteristics, setPriceRange, setCharacteristicFilter } = useFilter();
 
     return {
       characteristics,

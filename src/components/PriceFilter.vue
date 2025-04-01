@@ -6,148 +6,46 @@
         <span class="range-label range-label--to">To</span>
       </div>
       <div class="range-values">
-        <input
-          type="text"
-          v-model="minPriceFormatted"
-          class="range-input"
-          @input="handleMinInput"
-        />
+        <input type="text" v-model="minPriceFormatted" class="range-input" @input="handleMinInput" />
         <div class="range-separator"></div>
-        <input
-          type="text"
-          v-model="maxPriceFormatted"
-          class="range-input"
-          @input="handleMaxInput"
-        />
+        <input type="text" v-model="maxPriceFormatted" class="range-input" @input="handleMaxInput" />
       </div>
     </div>
     <div class="range-slider" ref="slider">
       <div class="slider-track"></div>
       <div class="slider-progress" :style="progressStyle"></div>
-      <div
-        class="slider-thumb"
-        :style="minThumbStyle"
-        @mousedown="startDrag('min')"
-      ></div>
-      <div
-        class="slider-thumb"
-        :style="maxThumbStyle"
-        @mousedown="startDrag('max')"
-      ></div>
+      <div class="slider-thumb" :style="minThumbStyle" @mousedown="startDrag('min')"></div>
+      <div class="slider-thumb" :style="maxThumbStyle" @mousedown="startDrag('max')"></div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed, onMounted, watch } from 'vue';
-import { Product } from '../types/Product';
-import { useStore } from 'vuex';
+import { defineComponent, watch } from "vue";
+import { usePriceFilter } from "@/hooks/usePriceFilter";
 
 export default defineComponent({
-  name: 'PriceFilter',
-  emits: ['update:price'],
+  name: "PriceFilter",
+  emits: ["update:price"],
   setup(_, { emit }) {
-    const store = useStore();
-    const isInitialized = ref(false);
-
-    // Получаем минимальную и максимальную цену из Vuex
-    const minMaxPrices = computed(() => {
-      const products = store.state.category.products as Product[];
-      if (!products.length) return [0, 0];
-      
-      const prices = products.map(p => p.discount_price || p.price);
-      return [Math.min(...prices), Math.max(...prices)];
-    });
-
-    const minLimit = ref(0);
-    const maxLimit = ref(0);
-    const minPrice = ref(1299);
-    const maxPrice = ref(1299);
-    
-    // Инициализация лимитов
-    watch(minMaxPrices, ([newMin, newMax]) => {
-      minLimit.value = newMin;
-      maxLimit.value = newMax;
-      minPrice.value = newMin;
-      maxPrice.value = newMax;
-      isInitialized.value = true;
-    }, { immediate: true });
-
-    const slider = ref<HTMLElement | null>(null);
-    const dragging = ref<'min' | 'max' | null>(null);
-    const sliderWidth = ref(0);
-
-    // Форматирование значений для отображения
-    const formatPrice = (value: number) => 
-      value.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-
-    const minPriceFormatted = computed(() => formatPrice(minPrice.value));
-    const maxPriceFormatted = computed(() => formatPrice(maxPrice.value));
-
-    // Стили для позиционирования элементов
-    const minThumbStyle = computed(() => ({
-      left: `${((minPrice.value - minLimit.value) / (maxLimit.value - minLimit.value)) * 100}%`
-    }));
-
-    const maxThumbStyle = computed(() => ({
-      left: `${((maxPrice.value - minLimit.value) / (maxLimit.value - minLimit.value)) * 100}%`
-    }));
-
-    const progressStyle = computed(() => ({
-      width: `${((maxPrice.value - minPrice.value) / (maxLimit.value - minLimit.value)) * 100}%`,
-      left: `${((minPrice.value - minLimit.value) / (maxLimit.value - minLimit.value)) * 100}%`
-    }));
-
-    // Обработка ввода
-    const parseInput = (value: string) => 
-      parseInt(value.replace(/\s/g, '')) || 0;
-
-    const handleMinInput = (event: Event) => {
-      const value = parseInput((event.target as HTMLInputElement).value);
-      minPrice.value = Math.min(value, maxPrice.value);
-    };
-
-    const handleMaxInput = (event: Event) => {
-      const value = parseInput((event.target as HTMLInputElement).value);
-      maxPrice.value = Math.max(value, minPrice.value);
-    };
-
-    // Логика перетаскивания
-    const startDrag = (type: 'min' | 'max') => {
-      dragging.value = type;
-    };
-
-    const handleMouseMove = (event: MouseEvent) => {
-      if (!dragging.value || !slider.value) return;
-
-      const rect = slider.value.getBoundingClientRect();
-      const x = event.clientX - rect.left;
-      const percentage = Math.min(Math.max(x / rect.width, 0), 1);
-      const newValue = minLimit.value + percentage * (maxLimit.value - minLimit.value);
-
-      if (dragging.value === 'min') {
-        minPrice.value = Math.min(newValue, maxPrice.value);
-      } else {
-        maxPrice.value = Math.max(newValue, minPrice.value);
-      }
-    };
-
-    const stopDrag = () => {
-      dragging.value = null;
-    };
-
-    // Инициализация
-    onMounted(() => {
-      if (slider.value) {
-        sliderWidth.value = slider.value.offsetWidth;
-      }
-      window.addEventListener('mousemove', handleMouseMove);
-      window.addEventListener('mouseup', stopDrag);
-    });
+    const {
+      isInitialized,
+      slider,
+      minPrice,
+      maxPrice,
+      minPriceFormatted,
+      maxPriceFormatted,
+      minThumbStyle,
+      maxThumbStyle,
+      progressStyle,
+      handleMinInput,
+      handleMaxInput,
+      startDrag,
+    } = usePriceFilter();
 
     // Отправка изменений
     watch([minPrice, maxPrice], () => {
-      emit('update:price', [minPrice.value, maxPrice.value]);
+      emit("update:price", [minPrice.value, maxPrice.value]);
     });
 
     return {
@@ -160,12 +58,11 @@ export default defineComponent({
       progressStyle,
       handleMinInput,
       handleMaxInput,
-      startDrag
+      startDrag,
     };
-  }
+  },
 });
 </script>
-
 
 <style scoped>
 .price-filter {

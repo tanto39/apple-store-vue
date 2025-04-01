@@ -1,27 +1,25 @@
 <template>
   <div class="spec-row">
-    <div class="spec-label">{{ label }}</div>
+    <div class="spec-label">{{ spec.characteristic }}</div>
     <div class="spec-value">
-      <div v-if="Array.isArray(value)">
-        <div class="spec-value__item" v-for="(item, index) in value" :key="index">
-          {{ item }}
-        </div>
-      </div>
-      <div class="spec-value__item" v-else>
-        {{ value }}
-      </div>
+        {{ `${spec.value} ${spec.unit_type}` }}
     </div>
   </div>
 </template>
 
-<script lang="ts" setup>
+<script lang="ts">
+import { defineComponent } from "vue";
+import { Characteristic } from "../types/Product";
 
-export interface SpecificationRowProps {
-  label: string;
-  value: string | string[];
-}
-
-defineProps<SpecificationRowProps>();
+export default defineComponent({
+  name: "SpecificationRow",
+  props: {
+    spec: {
+      type: Object as () => Characteristic,
+      required: true,
+    },
+  }
+});
 </script>
 
 <style scoped>
@@ -44,9 +42,6 @@ defineProps<SpecificationRowProps>();
 
 .spec-value {
   text-align: right;
-}
-
-.spec-value__item {
   color: #000;
   font-family: Abel, Arial, Helvetica, sans-serif;
   font-size: 15px;
