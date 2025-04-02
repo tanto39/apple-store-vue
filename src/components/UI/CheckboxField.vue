@@ -75,7 +75,7 @@ export default defineComponent({
 
 .checkbox-indicator_selected {
   background: #000000 url("../../assets/check.svg") center center no-repeat;
-  border: none;
+  border: 1px solid #000000;
 }
 
 .checkbox-label {

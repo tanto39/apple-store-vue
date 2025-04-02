@@ -2,7 +2,7 @@
   <section class="favorites-container">
     <div class="favorites-content">
       <h1 class="favorites-title">Favorite</h1>
-      <div class="favorites-list">
+      <div v-if="products?.length > 0" class="favorites-list">
         <FavoriteProductCard v-for="product in products"
           :key="product.id"
           :product="product"
@@ -13,9 +13,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, computed } from "vue";
+import { useStore } from "vuex";
 import FavoriteProductCard from "../components/FavoriteProductCard.vue";
-import { Product, productList } from "../types/Product";
+import { Product } from "../types/Product";
 
 export default defineComponent({
   name: "FavoriteProducts",
@@ -23,10 +24,11 @@ export default defineComponent({
     FavoriteProductCard,
   },
   setup() {
-    const products: Product[] = productList;
+    const store = useStore();
+    const products = computed(() => store.getters['favorites/favoriteProducts']);
 
     return {
-      products,
+      products
     };
   },
 });

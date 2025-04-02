@@ -1,7 +1,7 @@
 <template>
   <article class="product-card" @click="$router.push(`/product/${product.id}`)">
     <div class="product-card__favorite">
-      <FavoriteButton :is-active="isFavorite" @toggle="toggleFavorite" />
+      <FavoriteButton :is-active="isFavorite" @toggle="handleFavorites" />
     </div>
     <img :src="product.images[0]" :alt="product.name" class="product-card__image" />
     <div class="product-card__content">
@@ -9,7 +9,7 @@
         <h3 class="product-card__title">{{ product.name }}</h3>
         <p class="product-card__price">${{ product.price }}</p>
       </div>
-      <ButtonStore class="product-card__button" @click.stop="toggleCart">
+      <ButtonStore class="product-card__button" @click.stop="handleAddToCart">
         {{ isInCart ? "Added" : "Buy Now" }}
       </ButtonStore>
     </div>
@@ -17,8 +17,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, ref } from "vue";
-import { useStore } from "vuex";
+import { defineComponent  } from "vue";
+import { useHandleAddToCart } from "@/hooks/useHandleAddToCart";
+import { useHandleFavorites } from "@/hooks/useHandleFavorites";
 import { Product } from "../types/Product";
 
 export default defineComponent({
@@ -30,30 +31,15 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const store = useStore();
-    const isFavorite = ref(false);
-
-    const isInCart = computed(() =>
-      store.getters["cart/cartItems"].some((item: Product) => item.id === props.product.id)
-    );
-
-    const toggleCart = (event) => {
-      event.stopPropagation();
-      if (!isInCart.value) {
-        store.dispatch("cart/addToCart", props.product);
-      }
-    };
-
-    const toggleFavorite = (event) => {
-      event.stopPropagation();
-      isFavorite.value = !isFavorite.value;
-    };
+    
+    const { isInCart, handleAddToCart } = useHandleAddToCart(props.product);
+    const { isFavorite, handleFavorites } = useHandleFavorites(props.product);
 
     return {
       isFavorite,
       isInCart,
-      toggleFavorite,
-      toggleCart,
+      handleFavorites,
+      handleAddToCart,
     };
   },
 });

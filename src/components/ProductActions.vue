@@ -1,30 +1,40 @@
 <template>
   <div class="buttons-container">
-    <ButtonStore 
-      class="wishlist-btn" 
-      @click="$emit('add-to-wishlist')"
-    >
-      {{ isFavorite ? 'Added to Wishlist' : 'Add to Wishlist' }}
+    <ButtonStore class="wishlist-btn" @click="handleFavorites">
+      {{ isFavorite ? "Delete Wishlist" : "Add to Wishlist" }}
     </ButtonStore>
-    <ButtonStore 
-      class="cart-btn" 
-      @click="$emit('add-to-cart')"
-    >
-      {{ isInCart ? 'Added to Cart' : 'Add to Cart' }}
+    <ButtonStore class="cart-btn" @click="handleAddToCart">
+      {{ isInCart ? "Added to Cart" : "Add to Cart" }}
     </ButtonStore>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent } from "vue";
+import type { Product } from "../types/Product";
+import { useHandleAddToCart } from "@/hooks/useHandleAddToCart";
+import { useHandleFavorites } from "@/hooks/useHandleFavorites";
 
 export default defineComponent({
-  name: 'ProductActions',
+  name: "ProductActions",
   props: {
-    isInCart: Boolean,
-    isFavorite: Boolean
+    product: {
+      type: Object as () => Product,
+      required: true,
+    },
   },
-  emits: ['add-to-wishlist', 'add-to-cart']
+  setup(props) {
+    
+    const { isInCart, handleAddToCart } = useHandleAddToCart(props.product);
+    const { isFavorite, handleFavorites } = useHandleFavorites(props.product);
+
+    return {
+      isFavorite,
+      isInCart,
+      handleFavorites,
+      handleAddToCart,
+    };
+  },
 });
 </script>
 

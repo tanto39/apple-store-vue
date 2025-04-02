@@ -6,8 +6,8 @@
         :key="index"
         :src="image.url"
         alt=""
-        :class="['thumbnail', { 'thumbnail_active': image.isActive }]"
-        @click="$emit('select-image', index)"
+        :class="['thumbnail', { thumbnail_active: image.isActive }]"
+        @click="handleImageSelect(index)"
       />
     </div>
     <div class="main-image">
@@ -16,17 +16,23 @@
   </section>
 </template>
 
-<script setup lang="ts">
-import { ProductImage } from "../types/Product";
+<script lang="ts">
+import { defineComponent } from "vue";
+import { useImageGallery } from "@/hooks/useImageGallery";
 
-defineProps<{
-  images: ProductImage[];
-  mainImage: ProductImage;
-}>();
-
-defineEmits<{
-  (e: "select-image", index: number): void;
-}>();
+export default defineComponent({
+  name: "ImageGallery",
+  props: {
+    productImages: {
+      type: Array as () => string[],
+      required: true,
+    },
+  },
+  setup(props) {
+    const { mainImage, images, handleImageSelect } = useImageGallery(props.productImages);
+    return { mainImage, images, handleImageSelect };
+  },
+});
 </script>
 
 <style scoped>

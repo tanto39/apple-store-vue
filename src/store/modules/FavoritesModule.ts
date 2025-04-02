@@ -1,30 +1,39 @@
 // store/favorites/module.ts
-import { Module } from 'vuex';
+import { Module } from "vuex";
 import { RootState } from "@/types/RootState";
+import { Product } from "@/types/Product";
 
 export interface FavoritesState {
-  items: number[];
+  items: Product[];
 }
 
 const module: Module<FavoritesState, RootState> = {
   namespaced: true,
   state: () => ({
-    items: []
+    items: [],
   }),
   mutations: {
-    ADD_FAVORITE(state, productId: number) {
-      if (!state.items.includes(productId)) {
-        state.items.push(productId);
+    ADD_FAVORITE(state, product: Product) {
+      if (!state.items.some((item) => item.id === product.id)) {
+        state.items.push(product);
       }
     },
     REMOVE_FAVORITE(state, productId: number) {
-      state.items = state.items.filter(id => id !== productId);
-    }
+      state.items = state.items.filter((item) => item.id !== productId);
+    },
+  },
+  actions: {
+    addToFavorites({ commit }, product: Product) {
+      commit("ADD_FAVORITE", product);
+    },
+    removeFromFavorites({ commit }, productId: number) {
+      commit("REMOVE_FAVORITE", productId);
+    },
   },
   getters: {
-    isFavorite: (state) => (productId: number) => 
-      state.items.includes(productId)
-  }
+    favoriteProducts: (state) => state.items,
+    isFavorite: (state) => (productId: number) => state.items.some((item) => item.id === productId),
+  },
 };
 
 export default module;

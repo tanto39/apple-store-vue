@@ -2,6 +2,7 @@ import { createStore } from 'vuex'
 import categoryModule from '@/store/modules/CategoryModule';
 import cartModule from '@/store/modules/CartModule';
 import favoritesModule from '@/store/modules/FavoritesModule';
+import allProductsModule from '@/store/modules/AllProductsModule';
 import { RootState } from '@/types/RootState';
 
 export default createStore({
@@ -15,6 +16,7 @@ export default createStore({
   modules: {
     category: categoryModule,
     cart: cartModule,
-    favorites: favoritesModule
+    favorites: favoritesModule,
+    allProducts: allProductsModule
   }
 })

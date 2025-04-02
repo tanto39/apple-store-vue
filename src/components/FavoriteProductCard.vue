@@ -1,5 +1,5 @@
 <template>
-  <article class="product-card">
+  <article class="product-card" @click="$router.push(`/product/${product.id}`)">
     <img :src="product.images[0]" :alt="product.name" class="product-image" />
     <div class="product-content">
       <div class="product-info">
@@ -35,6 +35,7 @@ export default defineComponent({
   gap: 15px;
   justify-content: start;
   border-top: 1px solid #A3A3A3;
+  cursor: pointer;
 }
 
 .product-image {

@@ -2,9 +2,9 @@
   <article class="product-details">
     <Loader v-if="isLoading" />
     <ErrorMessage v-else-if="error" :message="error" />
-    <template v-else>
+    <div v-else>
       <div class="product-details__main">
-        <ImageGallery :images="images" :main-image="{ url: mainImage }" @select-image="handleImageSelect" />
+        <ImageGallery v-if="product.images?.length > 0" :productImages="product.images" />
         <section class="product-content">
           <ProductInfo
             :title="product.name"
@@ -12,19 +12,14 @@
             :original-price="product.discount_price ? product.price : null"
             :specifications="product.characteristics"
           />
-          <ProductActions
-            :is-in-cart="isInCart"
-            :is-favorite="isFavorite"
-            @add-to-wishlist="handleAddToWishlist"
-            @add-to-cart="handleAddToCart"
-          />
+          <ProductActions :product="product" />
           <DeliveryFeatures />
         </section>
       </div>
       <ProductDetails :specifications="product.characteristics" />
       <Rating :rating="product.rating" :review-count="product.count_review" />
-      <RelatedProducts />
-    </template>
+      <RelatedProducts :category="product.category" :current-product-id="product.id"/>
+    </div>
   </article>
 </template>
 
@@ -49,30 +44,12 @@ export default defineComponent({
     Rating,
   },
   setup() {
-    const {
-      product,
-      images,
-      isInCart,
-      isFavorite,
-      mainImage,
-      isLoading,
-      error,
-      handleImageSelect,
-      handleAddToWishlist,
-      handleAddToCart,
-    } = useProductDetail();
+    const { product, isLoading, error } = useProductDetail();
 
     return {
       product,
-      images,
-      isInCart,
-      isFavorite,
-      mainImage,
       isLoading,
       error,
-      handleImageSelect,
-      handleAddToWishlist,
-      handleAddToCart,
     };
   },
 });

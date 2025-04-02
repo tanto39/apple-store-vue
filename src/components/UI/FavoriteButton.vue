@@ -1,7 +1,7 @@
 <template>
   <button
     :class="['favorite-button', { 'favorite-button_active': isActive }]"
-    @click="$emit('toggle')"
+    @click.stop="$emit('toggle')"
     aria-label="Add to favorites"
   ></button>
 </template>

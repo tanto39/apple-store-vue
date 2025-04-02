@@ -1,7 +1,7 @@
 <template>
   <section class="shopping-cart">
     <h2 class="cart-title">Shopping Cart</h2>
-    <div v-if="products[0]" class="cart-items">
+    <div v-if="products?.length > 0" class="cart-items">
       <CartItem
         v-for="product in products"
         :key="product.id"

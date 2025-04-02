@@ -1,15 +1,15 @@
 <template>
-  <section class="related-products">
+  <section class="related-products" v-if="relatedProducts.length > 0">
     <HomeTitle title="Related Products" />
-    <ProductGrid :products="products" />
+    <ProductGrid :products="relatedProducts" />
   </section>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, computed, onMounted } from "vue";
+import { useStore } from "vuex";
 import HomeTitle from "./HomeTitle.vue";
 import ProductGrid from "./ProductGrid.vue";
-import { Product, productList } from "../types/Product";
 
 export default defineComponent({
   name: "RelatedProducts",
@@ -17,10 +17,34 @@ export default defineComponent({
     HomeTitle,
     ProductGrid,
   },
-  setup() {
-    const products: Product[] = productList.slice(0, 4);
+  props: {
+    category: {
+      type: String,
+      required: true
+    },
+    currentProductId: {
+      type: Number,
+      required: true
+    }
+  },
+  setup(props) {
+    const store = useStore();
+
+    const relatedProducts = computed(() => 
+      store.getters['allProducts/productsByCategory']({
+        category: props.category,
+        excludeProductId: props.currentProductId
+      }).slice(0, 4)
+    );
+
+    onMounted(() => {
+      if (relatedProducts.value.length === 0) {
+        store.dispatch('allProducts/loadProducts');
+      }
+    });
+
     return {
-      products,
+      relatedProducts
     };
   },
 });
