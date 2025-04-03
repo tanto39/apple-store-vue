@@ -1,4 +1,6 @@
 <template>
+  <Loader v-if="isLoading" />
+  <ErrorMessage v-if="error" :message="error" />
   <section class="related-products" v-if="relatedProducts.length > 0">
     <HomeTitle title="Related Products" />
     <ProductGrid :products="relatedProducts" />
@@ -6,8 +8,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, onMounted } from "vue";
-import { useStore } from "vuex";
+import { defineComponent } from "vue";
+import { useRelatedProducts } from "@/hooks/useRelatedProducts";
 import HomeTitle from "./HomeTitle.vue";
 import ProductGrid from "./ProductGrid.vue";
 
@@ -20,31 +22,20 @@ export default defineComponent({
   props: {
     category: {
       type: String,
-      required: true
+      required: true,
     },
     currentProductId: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   },
   setup(props) {
-    const store = useStore();
-
-    const relatedProducts = computed(() => 
-      store.getters['allProducts/productsByCategory']({
-        category: props.category,
-        excludeProductId: props.currentProductId
-      }).slice(0, 4)
-    );
-
-    onMounted(() => {
-      if (relatedProducts.value.length === 0) {
-        store.dispatch('allProducts/loadProducts');
-      }
-    });
+    const { relatedProducts, isLoading, error } = useRelatedProducts(props.category, props.currentProductId);
 
     return {
-      relatedProducts
+      relatedProducts,
+      isLoading,
+      error,
     };
   },
 });

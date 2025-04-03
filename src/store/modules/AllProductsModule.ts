@@ -41,15 +41,7 @@ const module: Module<AllProductsState, RootState> = {
     },
   },
   getters: {
-    productsByCategory: (state) => (params: { 
-      category: string; 
-      excludeProductId?: number 
-    }) => {
-      return state.items.filter(product => 
-        product.category === params.category &&
-        product.id !== params.excludeProductId
-      );
-    }
+    allProducts: (state) => state.items
   }
 };
 

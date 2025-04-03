@@ -17,6 +17,6 @@ export default createStore({
     category: categoryModule,
     cart: cartModule,
     favorites: favoritesModule,
-    allProducts: allProductsModule
+    allProducts: allProductsModule,
   }
 })

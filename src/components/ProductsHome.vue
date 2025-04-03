@@ -1,15 +1,17 @@
 <template>
-  <section class="products-home">
-    <TagTabs />
-    <ProductGrid :products="products" />
-  </section>
+  <div class="products-home">
+    <TagTabs :active-tab="activeTab" @tab-change="handleTabChange" />
+    <Loader v-if="isLoading" />
+    <ErrorMessage v-if="error" :message="error" />
+    <ProductGrid v-if="filteredProducts.length > 0" :products="filteredProducts" />
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { useProductsHome } from "@/hooks/useProductsHome";
 import TagTabs from "./TagTabs.vue";
 import ProductGrid from "./ProductGrid.vue";
-import { Product, productList } from "../types/Product";
 
 export default defineComponent({
   name: "ProductsHome",
@@ -18,10 +20,14 @@ export default defineComponent({
     ProductGrid,
   },
   setup() {
-    const products: Product[] = productList.slice(0, 4);
+    const { activeTab, filteredProducts, handleTabChange, isLoading, error } = useProductsHome();
 
     return {
-      products,
+      activeTab,
+      filteredProducts,
+      handleTabChange,
+      isLoading,
+      error,
     };
   },
 });

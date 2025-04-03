@@ -1,16 +1,49 @@
 <template>
   <nav class="tabs">
-    <button class="tabs__item tabs__item_active">New Arrival</button>
-    <button class="tabs__item">Bestseller</button>
-    <button class="tabs__item">Featured Products</button>
+    <button
+      v-for="tab in tabs"
+      :key="tab.id"
+      :class="['tabs__item', { tabs__item_active: activeTab === tab.id }]"
+      @click="handleTabClick(tab.id)"
+    >
+      {{ tab.label }}
+    </button>
   </nav>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 
+interface Tab {
+  id: string;
+  label: string;
+}
+
 export default defineComponent({
   name: "TagTabs",
+  props: {
+    activeTab: {
+      type: String,
+      required: true,
+    },
+  },
+  emits: ["tab-change"],
+  setup(_, { emit }) {
+    const tabs: Tab[] = [
+      { id: "newArrival", label: "New Arrival" },
+      { id: "bestseller", label: "Bestseller" },
+      { id: "featured", label: "Featured Products" },
+    ];
+
+    const handleTabClick = (tabId: string) => {
+      emit("tab-change", tabId);
+    };
+
+    return {
+      tabs,
+      handleTabClick,
+    };
+  },
 });
 </script>
 
@@ -24,7 +57,6 @@ export default defineComponent({
 
 .tabs__item {
   color: #8b8b8b;
-  font-family: ABeeZee;
   font-size: 18px;
   font-weight: 400;
   line-height: 32px;

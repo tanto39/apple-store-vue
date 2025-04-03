@@ -3,7 +3,10 @@
     <router-link to="/">
       <img alt="" src="../assets/Logo.svg" />
     </router-link>
-    <SearchInput />
+    <div class="search-wrapper">
+      <SearchInput v-model="searchQuery" />
+      <SearchResults :search-query="searchQuery" @close-results="searchQuery = ''" />
+    </div>
     <div class="header__buttons">
       <router-link to="/favorites">
         <img alt="" src="../assets/Favorite.svg" />
@@ -16,10 +19,25 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
+import SearchResults from "./SearchResults.vue";
+import { clickOutside } from '../directives/clickOutside';
 
 export default defineComponent({
-  name: "HeaderTop"
+  name: "HeaderTop",
+  directives: {
+    clickOutside
+  },
+  components: {
+    SearchResults,
+  },
+  setup() {
+    const searchQuery = ref("");
+
+    return {
+      searchQuery,
+    };
+  },
 });
 </script>
 
