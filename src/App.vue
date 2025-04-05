@@ -5,13 +5,20 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, onMounted } from "vue";
+import { useStore } from "vuex";
 import HeaderTop from "./components/HeaderTop.vue";
 import FooterStore from "./components/FooterStore.vue";
 
 export default defineComponent({
   components: { HeaderTop, FooterStore},
-  name: "App"
+  name: "App",
+  setup() {
+    const store = useStore();
+    onMounted(() => {
+      store.dispatch('allProducts/loadProducts');
+    });
+  }
 })
 </script>
 

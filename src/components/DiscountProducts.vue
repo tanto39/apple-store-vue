@@ -1,15 +1,15 @@
 <template>
   <section class="discount-products">
     <HomeTitle title="Discounts up to -50%" />
-    <ProductGrid :products="products" />
+    <ProductGrid :products="discountedProducts" />
   </section>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { useDiscountProducts } from "@/hooks/useDiscountProducts";
 import HomeTitle from "./HomeTitle.vue";
 import ProductGrid from "./ProductGrid.vue";
-import { Product, productList } from "../types/Product";
 
 export default defineComponent({
   name: "DiscountProducts",
@@ -18,9 +18,10 @@ export default defineComponent({
     ProductGrid,
   },
   setup() {
-    const products: Product[] = productList.slice(0, 4);
+    const { discountedProducts } = useDiscountProducts();
+
     return {
-      products,
+      discountedProducts: discountedProducts,
     };
   },
 });

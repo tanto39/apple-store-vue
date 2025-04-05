@@ -1,4 +1,4 @@
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch } from "vue";
 import { useRoute } from "vue-router";
 import { fetchProduct } from "@/services/productService";
 import { Product } from "@/types/Product";
@@ -23,9 +23,18 @@ export const useProductDetail = () => {
 
   onMounted(loadProduct);
 
+  watch(
+    () => route.params.id,
+    (newId) => {
+      if (newId) {
+        loadProduct();
+      }
+    }
+  );
+
   return {
     product,
     isLoading,
-    error
+    error,
   };
 };

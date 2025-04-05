@@ -5,7 +5,7 @@
     </router-link>
     <div class="search-wrapper">
       <SearchInput v-model="searchQuery" />
-      <SearchResults :search-query="searchQuery" @close-results="searchQuery = ''" />
+      <SearchResults :search-query="searchQuery" @close="searchQuery = ''" />
     </div>
     <div class="header__buttons">
       <router-link to="/favorites">

@@ -1,4 +1,4 @@
-import { computed, onMounted } from "vue";
+import { computed } from "vue";
 import { useStore } from "vuex";
 import { Product } from "@/types/Product";
 
@@ -16,11 +16,6 @@ const store = useStore();
           product.id !== currentProductId
         )
         .slice(0, 4);
-    });
-    onMounted(() => {
-      if (allProducts.value.length === 0) {
-        store.dispatch('allProducts/loadProducts');
-      }
     });
 
     return {

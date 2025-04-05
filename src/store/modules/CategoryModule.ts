@@ -55,6 +55,7 @@ const module: Module<CategoryState, RootState> = {
       try {
         commit("SET_LOADING", true);
         commit("SET_ERROR", null);
+        commit("SET_PAGE", 1);
 
         const products = await fetchCategoryProducts(categoryId);
         commit("SET_PRODUCTS", products);
