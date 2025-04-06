@@ -48,11 +48,16 @@ export default {
   width: 100%;
 }
 .light {
-  background-color: #F9F9F9;
+  background-color: #f9f9f9;
 }
 .gray {
-  background-color: #EAEAEA;
-} 
+  background-color: #eaeaea;
+}
+@media (max-width: 1160px) {
+  .banner-container {
+    flex-direction: column;
+  }
+}
 @media (max-width: 991px) {
   .banner-container {
     max-width: 991px;

@@ -76,17 +76,15 @@ export default defineComponent({
 <style scoped>
 .search-results {
   position: absolute;
-  width: 30%;
+  width: 40%;
   background: #ffffff;
   border: 1px solid #e0e0e0;
-  border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   z-index: 1000;
   margin-top: 8px;
   max-height: 500px;
   overflow-y: auto;
 }
-
 .result-item {
   display: flex;
   align-items: center;
@@ -95,11 +93,9 @@ export default defineComponent({
   transition: background-color 0.2s ease;
   border-bottom: 1px solid #f5f5f5;
 }
-
 .result-item:hover {
   background-color: #f8f9fa;
 }
-
 .result-image {
   width: 50px;
   height: 50px;
@@ -107,16 +103,24 @@ export default defineComponent({
   border-radius: 4px;
   margin-right: 16px;
 }
-
 .result-info {
   flex-grow: 1;
 }
-
 .result-title {
   margin-bottom: 4px;
 }
-
 .result-price {
   margin: 0;
+}
+.no-results{
+  padding: 20px;
+}
+@media (max-width: 991px) {
+  .search-results {
+    left: 0;
+    width: 95%;
+    max-height: 300px;
+    margin-top: 60px;
+  }
 }
 </style>

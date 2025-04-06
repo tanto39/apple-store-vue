@@ -78,6 +78,7 @@ export default defineComponent({
 .squares {
   display: flex;
   height: 272px;
+  flex-wrap: wrap;
 }
 
 .square-banner {

@@ -1,11 +1,11 @@
 <template>
   <article :class="[isDark ? 'banner-dark' : 'banner', $attrs.class]">
+    <img :src="image" :alt="title" class="banner-image" />
     <div class="content-wrapper">
       <h2 class="title">{{ title }}</h2>
       <p class="description">{{ description }}</p>
       <ButtonStore class="shop-button">Shop Now</ButtonStore>
     </div>
-    <img :src="image" :alt="title" class="banner-image" />
   </article>
 </template>
 
@@ -47,26 +47,22 @@ export default {
   flex-direction: column;
   flex: 1;
   min-width: 280px;
-  padding: 376px 32px 56px;
   position: relative;
   background-color: #fff;
 }
-
 .banner {
   background-color: #fff;
 }
-
 .banner-dark {
   background-color: #2C2C2C;
 }
-
 .content-wrapper {
   display: flex;
   flex-direction: column;
+  padding: 32px;
   gap: 16px;
   z-index: 1;
 }
-
 .title {
   color: #000;
   font-size: 33px;
@@ -74,11 +70,9 @@ export default {
   font-weight: 400;
   line-height: 48px;
 }
-
 .banner-dark .title {
   color: #fff;
 }
-
 .description {
   color: #909090;
   font-size: 14px;
@@ -86,9 +80,9 @@ export default {
   font-weight: 400;
   line-height: 24px;
 }
-
 .shop-button {
-  padding: 16px 56px;
+  padding: 15px;
+  width: 188px;
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
@@ -96,18 +90,20 @@ export default {
   border: 1px solid #000;
   color: #000;
 }
-
 .banner-dark .shop-button {
   border: 1px solid #fff;
   color: #fff;
 }
-
 .banner-image {
   width: 360px;
   height: 360px;
-  position: absolute;
-  top: 22px;
-  right: 0;
+}
+
+@media (max-width: 1460px) {
+.banner-image {
+    width: 100%;
+    height: auto;
+}
 }
 
 @media (max-width: 991px) {
@@ -117,26 +113,14 @@ export default {
 }
 
 @media (max-width: 640px) {
-  .banner {
-    min-width: 100%;
-    padding: 300px 24px 40px;
-  }
-
   .title {
     font-size: 28px;
     line-height: 40px;
   }
-
-  .description {
-    font-size: 13px;
-    line-height: 20px;
-  }
-
   .shop-button {
     padding: 12px 40px;
     font-size: 14px;
   }
-
   .banner-image {
     width: 280px;
     height: 280px;

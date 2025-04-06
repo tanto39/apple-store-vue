@@ -36,7 +36,7 @@ export default defineComponent({
   justify-content: center;
   flex-grow: 1;
   flex-shrink: 1;
-  width: 128px;
+  width: 110px;
   white-space: nowrap;
   cursor: pointer;
 }

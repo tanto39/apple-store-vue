@@ -1,21 +1,19 @@
 <template>
-  <section class="banner-container">
-    <article class="content-wrapper">
-      <header class="header-content">
-        <p class="subtitle">Pro.Beyond.</p>
-        <h1 class="title">IPhone 14 Pro</h1>
-      </header>
-      <p class="description">Created to change everything for the better. For everyone</p>
-      <ButtonStore class="cta-button">Shop Now</ButtonStore>
-    </article>
-    <figure class="image-container">
-      <img
-        src="../assets/Banner-top.png"
-        alt="iPhone 14 Pro"
-        class="product-image"
-      />
-    </figure>
-  </section>
+  <div class="banner">
+    <section class="banner-container">
+      <article class="content-wrapper">
+        <header class="header-content">
+          <div class="subtitle">Pro.Beyond.</div>
+          <div class="title">IPhone 14 Pro</div>
+        </header>
+        <p class="description">Created to change everything for the better. For everyone</p>
+        <ButtonStore class="cta-button"  @click="$router.push('/category/2')">Shop Now</ButtonStore>
+      </article>
+      <figure class="image-container">
+        <img src="../assets/Banner-top.png" alt="iPhone 14 Pro" class="product-image" />
+      </figure>
+    </section>
+  </div>
 </template>
 
 <script lang="ts">
@@ -28,77 +26,58 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.banner {
+  background: linear-gradient(91deg, #211c24 0.64%, #211c24 101%);
+}
 .banner-container {
   display: flex;
-  padding: 0 160px;
+  max-width: 1120px;
+  margin: 0 auto;
   justify-content: space-between;
   align-items: center;
-  align-content: center;
-  row-gap: 24px;
-  align-self: stretch;
-  flex-wrap: wrap;
-  background: linear-gradient(91deg, #211c24 0.64%, #211c24 101%);
+}
+
+@media (max-width: 1200px) {
+  .banner-container {
+    margin: 0 15px;
+  }
 }
 
 @media (max-width: 991px) {
   .banner-container {
-    padding: 40px;
+    flex-direction: column;
     justify-content: center;
     text-align: center;
   }
 }
-
-@media (max-width: 640px) {
-  .banner-container {
-    padding: 20px;
-  }
-}
-
 .content-wrapper {
-  display: flex;
-  min-width: 400px;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 24px;
-  flex: 1 0 0;
+  height: 256px;
 }
-
-.header-content {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 24px;
-  align-self: stretch;
-}
-
 .subtitle {
-  align-self: stretch;
   color: #fff;
   font-size: 25px;
   font-weight: 400;
   line-height: 32px;
   opacity: 0.4;
 }
-
 .title {
-  align-self: stretch;
   color: #fff;
   font-family: "Abel", sans-serif;
   font-size: 96px;
   font-weight: 400;
+  display: block;
+  position: relative;
   line-height: 72px;
   letter-spacing: -0.96px;
+  margin: 24px 0 0 0;
 }
-
 .description {
-  align-self: stretch;
   color: #909090;
   font-size: 18px;
   font-style: italic;
   font-weight: 400;
   line-height: 24px;
 }
-
 .cta-button {
   padding: 16px 56px;
   gap: 8px;
@@ -109,7 +88,6 @@ export default defineComponent({
   line-height: 24px;
   background: transparent;
 }
-
 .cta-button:hover {
   background: rgba(255, 255, 255, 0.1);
 }
@@ -118,31 +96,29 @@ export default defineComponent({
   .content-wrapper {
     min-width: unset;
     align-items: center;
+    margin-top: 72px;
   }
-
   .header-content {
     align-items: center;
   }
-
+  .header-content,
+  .title,
+  .subtitle,
+  .description,
+  .cta-button {
+    font-family: "Abel", sans-serif !important;
+    font-style: normal !important;
+  }
   .title {
     font-size: 72px;
-    line-height: 60px;
+    margin: 20px 0 0 0;
   }
-}
-
-@media (max-width: 640px) {
-  .subtitle {
-    font-size: 20px;
-    line-height: 28px;
-  }
-
-  .title {
-    font-size: 48px;
-    line-height: 40px;
-  }
-
   .description {
-    font-size: 16px;
+    font-size: 19px;
+    margin: 20px 0 30px;
+  }
+  .cta-button {
+    width: 175px;
   }
 }
 
@@ -155,7 +131,6 @@ export default defineComponent({
   align-items: center;
   margin: 0;
 }
-
 .product-image {
   width: 100%;
   height: 100%;
@@ -164,15 +139,8 @@ export default defineComponent({
 
 @media (max-width: 991px) {
   .image-container {
-    width: 300px;
-    height: 468px;
-  }
-}
-
-@media (max-width: 640px) {
-  .image-container {
-    width: 240px;
-    height: 374px;
+    width: 321px;
+    margin-bottom: -66%;
   }
 }
 </style>

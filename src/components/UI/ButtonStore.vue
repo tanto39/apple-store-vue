@@ -32,10 +32,4 @@ export default defineComponent({
   cursor: pointer;
   transition: all 0.3s ease;
 }
-
-@media (max-width: 640px) {
-  .button {
-    width: 100%;
-  }
-}
 </style>

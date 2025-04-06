@@ -76,8 +76,8 @@ export default defineComponent({
   display: flex;
   align-items: start;
   gap: 32px;
-  font-family: ABeeZee, -apple-system, Roboto, Helvetica, sans-serif;
   font-style: italic;
   font-weight: 400;
+  flex-wrap: wrap;
 }
 </style>

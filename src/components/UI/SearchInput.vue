@@ -38,10 +38,7 @@ export default defineComponent({
   display: flex;
   align-items: center;
   background: #f5f5f5;
-  padding: 10px;
   border-radius: 8px;
-  width: 100%;
-  max-width: 300px;
 }
 
 .search-icon {
@@ -57,7 +54,7 @@ export default defineComponent({
   background: transparent;
   flex-grow: 1;
   font-size: 14px;
-  color: #333;
+  color: gray;
 }
 
 .search-input::placeholder {
