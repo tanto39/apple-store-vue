@@ -6,22 +6,22 @@
         description="Incredibly powerful CPUs, GPUs, and an SSD with integrated I/O will redefine your PlayStation experience."
         :imageSrc="'/images/PlayStation.png'"
         variant="light"
+        length="long"
         class="wide-banner"
       />
       <div class="squares">
         <SmallBanner
-          title="Apple <br>AirPods Max"
+          title="Apple AirPods Max"
           description="Computational audio. Listen, it's powerful"
           :imageSrc="'/images/airpodsmax.png'"
           variant="light"
           class="square-banner"
         />
         <SmallBanner
-          title="Apple <br>Vision<span style='color: #fff'>Pro</span>"
+          title="Apple VisionPro"
           description="An immersive way to experience entertainment"
           :imageSrc="'/images/applevisionpro.png'"
           variant="dark"
-          titleStyle="italic"
           class="square-banner"
         />
       </div>
@@ -56,50 +56,35 @@ export default defineComponent({
   justify-content: start;
   flex-wrap: wrap;
 }
-
 .left-banners {
   display: flex;
-  min-width: 240px;
   flex-direction: column;
   align-items: stretch;
   font-weight: 400;
   justify-content: center;
   flex: 1;
   flex-shrink: 1;
-  flex-basis: 320px;
+  height: 600px;
 }
-
-.wide-banner {
-  min-height: 328px;
-  padding-left: 334px;
-  padding-right: 48px;
-}
-
 .squares {
   display: flex;
   height: 272px;
   flex-wrap: wrap;
 }
-
 .square-banner {
   flex: 1;
 }
-
 @media (max-width: 991px) {
-  .left-banners {
-    max-width: 100%;
+  .smaller-banners, .left-banners, .squares {
+    flex-direction: column;
+    height: auto;
+    width: 100%;
   }
-
-  .wide-banner {
-    padding: 20px;
-  }
-
   .squares {
-    max-width: 100%;
+    order: 1;
   }
-
-  .square-banner {
-    padding: 20px;
+  .wide-banner{
+    order: 2;
   }
 }
 </style>

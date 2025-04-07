@@ -1,20 +1,8 @@
 <template>
-  <article
-    :class="[
-      'small-banner',
-      `small-banner--${variant}`,
-      `small-banner--${imagePosition}`,
-    ]"
-  >
+  <article :class="['small-banner', `small-banner_${variant}`, `small-banner_${length}`]">
     <img :src="imageSrc" :alt="title" class="small-banner__image" />
     <div class="small-banner__content">
-      <h2
-        :class="[
-          'small-banner__title',
-          { 'small-banner__title--italic': titleStyle === 'italic' },
-        ]"
-        v-html="title"
-      ></h2>
+      <div class="small-banner__title">{{ title }}</div>
       <p class="small-banner__description">{{ description }}</p>
     </div>
   </article>
@@ -43,15 +31,10 @@ export default defineComponent({
       default: "light",
       validator: (value: string) => ["light", "dark"].includes(value),
     },
-    imagePosition: {
+    length: {
       type: String,
-      default: "left",
-      validator: (value: string) => ["left", "right"].includes(value),
-    },
-    titleStyle: {
-      type: String,
-      default: "regular",
-      validator: (value: string) => ["regular", "italic"].includes(value),
+      default: "short",
+      validator: (value: string) => ["short", "long"].includes(value),
     },
   },
 });
@@ -64,59 +47,82 @@ export default defineComponent({
   min-width: 240px;
   overflow: hidden;
 }
-
-.small-banner--light {
+.small-banner_light {
   background-color: #fff;
 }
-
-.small-banner--dark {
+.small-banner_dark {
   background-color: #353535;
 }
-
+.small-banner_long .small-banner__image {
+  margin-bottom: -7%;
+  margin-left: -8%;
+}
 .small-banner__image {
-  position: absolute;
-  left: -30%;
+  margin-left: -38%;
 }
-
-.wide-banner .small-banner__image {
-  left: -60px;
+.small-banner_dark .small-banner__image {
+  height: 135px;
+  margin: auto 0 auto -48%;
 }
-
 .small-banner__content {
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: auto 0 auto 200px;
+  margin: auto 50px;
 }
-
-.wide-banner .small-banner__content{
-  margin: auto 0;
+.small-banner_dark .small-banner__content {
+  margin: auto 50px auto 20px;
 }
-
 .small-banner__title {
-  line-height: 1;
-  margin: 0;
+  font-size: 29px;
+  line-height: 40px;
 }
-
-.small-banner__title--italic {
-  font-style: italic;
+.small-banner_long .small-banner__title {
+  font-size: 49px;
 }
-
-.small-banner--dark .small-banner__title {
+.small-banner_dark .small-banner__title {
   color: #fff;
 }
-
 .small-banner__description {
   color: #909090;
   font-size: 14px;
   line-height: 24px;
+  margin: 8px 0 0;
+}
+.small-banner_long .small-banner__description {
   margin: 16px 0 0;
 }
 
 @media (max-width: 991px) {
   .small-banner {
-    padding: 20px;
+    display: block;
+    text-align: center;
+  }
+  .small-banner__title,
+  .small-banner_long .small-banner__title,
+  .small-banner__description {
+    font-family: Abel, sans-serif;
+  }
+  .small-banner__title,
+  .small-banner_long .small-banner__title {
+    font-size: 34px;
+  }
+  .small-banner_long .small-banner__description,
+  .small-banner__description {
+    font-size: 16px;
+    margin: 4px auto 40px;
+  }
+  .small-banner__image,
+  .small-banner_long .small-banner__image,
+  .small-banner_dark .small-banner__image {
+    display: block;
+    margin: 40px auto 20px auto;
+    height: 200px;
+  }
+  .small-banner_dark .small-banner__image {
+    height: auto;
+    width: 305px;
+    margin: 60px auto;
+  }
+  .small-banner__content, .small-banner_dark .small-banner__content {
+    margin: auto 10px;
   }
 }
 </style>
