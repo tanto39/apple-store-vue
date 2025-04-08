@@ -28,15 +28,14 @@ export default defineComponent({
   border-radius: 15px;
   background-color: rgba(237, 237, 237, 1);
   display: flex;
-  min-width: 77px;
+  min-width: 79px;
   min-height: 104px;
   padding: 24px 24px 0 24px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex-grow: 1;
   flex-shrink: 1;
-  width: 110px;
+  width: 112px;
   white-space: nowrap;
   cursor: pointer;
 }
@@ -53,9 +52,11 @@ export default defineComponent({
 }
 
 @media (max-width: 991px) {
+  .category-name {
+    font-family: "Abel", sans-serif;
+  }
   .category-card {
-    padding: 24px 20px;
-    white-space: initial;
+    width: 116px;
   }
 }
 </style>

@@ -42,13 +42,7 @@ export default defineComponent({
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 0;
-}
-
-@media (max-width: 640px) {
-  .title-section {
-    padding: 16px 0;
-  }
+  padding: 0 0 32px 0;
 }
 
 .home-title {
@@ -60,33 +54,11 @@ export default defineComponent({
   letter-spacing: 0.24px;
   margin: 0;
 }
-
-@media (max-width: 991px) {
-  .home-title {
-    font-size: 20px;
-    line-height: 28px;
-  }
-}
-
-@media (max-width: 640px) {
-  .home-title {
-    font-size: 18px;
-    line-height: 24px;
-  }
-}
-
 .navigation-controls {
   display: flex;
   align-items: center;
   gap: 16px;
 }
-
-@media (max-width: 640px) {
-  .navigation-controls {
-    gap: 12px;
-  }
-}
-
 .nav-button {
   background: none;
   border: none;
@@ -96,10 +68,22 @@ export default defineComponent({
   align-items: center;
   justify-content: center;
 }
-
 .arrow-left,
 .arrow-right {
   width: 32px;
   height: 32px;
+}
+
+@media (max-width: 991px) {
+  .home-title {
+    font-family: "Abel", sans-serif;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+  }
+  .arrow-left, .arrow-right {
+    width: 25px;
+    height: 25px;
+}
 }
 </style>

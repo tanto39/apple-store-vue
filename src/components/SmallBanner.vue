@@ -28,8 +28,8 @@ export default defineComponent({
     },
     variant: {
       type: String,
-      default: "light",
-      validator: (value: string) => ["light", "dark"].includes(value),
+      default: "white",
+      validator: (value: string) => ["light", "dark", "white"].includes(value),
     },
     length: {
       type: String,
@@ -48,7 +48,7 @@ export default defineComponent({
   overflow: hidden;
 }
 .small-banner_light {
-  background-color: #fff;
+  background-color: #EDEDED;
 }
 .small-banner_dark {
   background-color: #353535;

@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent  } from "vue";
+import { defineComponent } from "vue";
 import { useHandleAddToCart } from "@/hooks/useHandleAddToCart";
 import { useHandleFavorites } from "@/hooks/useHandleFavorites";
 import { Product } from "../types/Product";
@@ -31,7 +31,6 @@ export default defineComponent({
     },
   },
   setup(props) {
-    
     const { isInCart, handleAddToCart } = useHandleAddToCart(props.product);
     const { isFavorite, handleFavorites } = useHandleFavorites(props.product);
 
@@ -94,7 +93,6 @@ export default defineComponent({
   color: #000;
   text-align: center;
   font-style: italic;
-  font-size: 16px;
   font-weight: 400;
   line-height: 24px;
   width: 100%;
@@ -130,9 +128,31 @@ export default defineComponent({
 }
 
 @media (max-width: 640px) {
+  .product-card {
+    min-width: 140px;
+    max-width: 150px;
+    padding: 24px 10px;
+    gap: 10px;
+  }
+  .product-card__image {
+    width: 104px;
+    height: 104px;
+  }
+  .product-card__content {
+    gap: 19px;
+  }
+  .product-card__info {
+    gap: 14px;
+  }
+  .product-card__button,
+  .product-card__title {
+    font-family: Abel, sans-serif !important;
+    font-style: normal !important;
+  }
   .product-card__button {
     width: 100%;
     padding: 12px 32px;
+    font-size: 14px;
   }
 }
 </style>

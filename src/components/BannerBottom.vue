@@ -4,13 +4,11 @@
       <div class="banner-text-container">
         <h2 class="banner-heading">
           <span class="heading-regular">Big Summer</span>
-          <span class="heading-italic">Sale</span>
+          <span class="heading-italic"> Sale</span>
         </h2>
-        <p class="banner-description">
-          Commodo fames vitae vitae leo mauris in. Eu consequat.
-        </p>
+        <p class="banner-description">Commodo fames vitae vitae leo mauris in. Eu consequat.</p>
       </div>
-      <ButtonStore class="shop-now-button" @click="handleShopNow">Shop Now</ButtonStore>
+      <ButtonStore class="shop-now-button" @click="$router.push('/category/2')">Shop Now</ButtonStore>
     </div>
   </section>
 </template>
@@ -20,14 +18,6 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "BannerBottom",
-  setup() {
-    const handleShopNow = () => {
-      console.log("Shop Now clicked");
-    };
-    return {
-      handleShopNow,
-    };
-  },
 });
 </script>
 
@@ -40,10 +30,8 @@ export default defineComponent({
   align-items: center;
   gap: 8px;
   width: 100%;
-  background: 
-    url("../assets/banner-bottom1.png") left center no-repeat,
-    url("../assets/banner-bottom2.png") right center no-repeat,
-    linear-gradient(100deg, #2e2e2e 42.36%, #000 98.65%);
+  background: url("../assets/banner-bottom1.png") left top no-repeat,
+    url("../assets/banner-bottom2.png") right bottom no-repeat, linear-gradient(100deg, #2e2e2e 42.36%, #000 98.65%);
 }
 
 .banner-content {
@@ -64,17 +52,19 @@ export default defineComponent({
   color: #fff;
   text-align: center;
   font-size: 72px;
-  line-height: 72px;
   letter-spacing: -0.72px;
   margin: 0;
 }
 
 .heading-regular {
   font-family: "Abel", sans-serif;
+  font-size: 72px;
   font-weight: 400;
+  line-height: 0;
 }
 
 .heading-italic {
+  font-size: 72px;
   font-style: italic;
   font-weight: 400;
 }
@@ -85,19 +75,15 @@ export default defineComponent({
   font-family: "Abel", sans-serif;
   font-size: 16px;
   font-weight: 400;
-  line-height: 32px;
+  line-height: 1;
   width: 100%;
   margin: 0;
 }
 
 .shop-now-button {
   padding: 16px 56px;
-  gap: 8px;
   border: 1px solid #fff;
   color: #fff;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
   background: transparent;
 }
 
@@ -106,37 +92,24 @@ export default defineComponent({
 }
 
 @media (max-width: 991px) {
-  .banner-heading {
-    font-size: 56px;
-    line-height: 56px;
+  .banner-container {
+    background: url("../assets/banner-bottom3.png") top center no-repeat,
+      url("../assets/banner-bottom4.png") bottom center no-repeat, linear-gradient(100deg, #2e2e2e 42.36%, #000 98.65%);
+    background-size: 100%;
   }
-
+  .heading-regular,
+  .heading-italic {
+    font-family: "Abel", sans-serif;
+    font-size: 48px;
+    font-style: normal;
+  }
   .banner-description {
-    font-size: 14px;
-    line-height: 28px;
-  }
-
-  .shop-now-button {
-    padding: 14px 48px;
-  }
-}
-
-@media (max-width: 640px) {
-  .banner-heading {
-    font-size: 40px;
-    line-height: 40px;
-  }
-
-  .banner-description {
-    font-size: 12px;
-    line-height: 24px;
-    padding: 0 20px;
-  }
-
-  .shop-now-button {
-    font-size: 14px;
-    padding: 12px 40px;
+    line-height: 32px;
     width: 80%;
+  }
+  .shop-now-button {
+    font-family: "Abel", sans-serif !important;
+    font-style: normal !important;
   }
 }
 </style>

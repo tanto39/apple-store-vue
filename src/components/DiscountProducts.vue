@@ -29,7 +29,7 @@ export default defineComponent({
 
 <style scoped>
 .discount-products {
-  padding: 56px 0;
+  padding: 80px 0;
   max-width: 1120px;
   margin: 0 auto;
   gap: 32px;
@@ -37,13 +37,7 @@ export default defineComponent({
 
 @media (max-width: 991px) {
   .discount-products {
-    padding: 40px 0;
-  }
-}
-
-@media (max-width: 640px) {
-  .discount-products {
-    padding: 20px 0;
+    padding: 56px 5px;
   }
 }
 </style>

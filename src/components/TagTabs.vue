@@ -74,15 +74,12 @@ export default defineComponent({
 }
 
 @media (max-width: 991px) {
-  .tabs {
-    gap: 24px;
+  .tabs{
+    justify-content: center;
   }
-}
-
-@media (max-width: 640px) {
-  .tabs {
-    gap: 16px;
-    overflow-x: auto;
+  .tabs__item  {
+    font-family: Abel, sans-serif;
+    font-size: 16px;
   }
 }
 </style>

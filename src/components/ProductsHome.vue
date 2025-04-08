@@ -47,13 +47,7 @@ export default defineComponent({
 
 @media (max-width: 991px) {
   .products-home {
-    padding: 40px 0;
-  }
-}
-
-@media (max-width: 640px) {
-  .products-home {
-    padding: 20px 0;
+    padding: 56px 5px;
   }
 }
 </style>

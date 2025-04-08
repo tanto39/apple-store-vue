@@ -5,7 +5,6 @@
         title="Playstation 5"
         description="Incredibly powerful CPUs, GPUs, and an SSD with integrated I/O will redefine your PlayStation experience."
         :imageSrc="'/images/PlayStation.png'"
-        variant="light"
         length="long"
         class="wide-banner"
       />
