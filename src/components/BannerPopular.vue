@@ -2,9 +2,9 @@
   <article :class="[isDark ? 'banner-dark' : 'banner', $attrs.class]">
     <img :src="image" :alt="title" class="banner-image" />
     <div class="content-wrapper">
-      <h2 class="title">{{ title }}</h2>
+      <div class="title">{{ title }}</div>
       <p class="description">{{ description }}</p>
-      <ButtonStore class="shop-button">Shop Now</ButtonStore>
+      <ButtonStore class="shop-button" @click="$router.push(`/category/${categoryId}`)">Shop Now</ButtonStore>
     </div>
   </article>
 </template>
@@ -37,6 +37,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    categoryId: {
+      type: String,
+      required: true,
+    },
   },
 };
 </script>
@@ -47,6 +51,7 @@ export default {
   flex-direction: column;
   flex: 1;
   min-width: 280px;
+  max-width: 360px;
   position: relative;
   background-color: #fff;
 }
@@ -59,14 +64,11 @@ export default {
 .content-wrapper {
   display: flex;
   flex-direction: column;
-  padding: 32px;
-  gap: 16px;
-  z-index: 1;
+  padding: 10px 32px 56px;
 }
 .title {
   color: #000;
   font-size: 33px;
-  font-style: italic;
   font-weight: 400;
   line-height: 48px;
 }
@@ -76,7 +78,6 @@ export default {
 .description {
   color: #909090;
   font-size: 14px;
-  font-style: italic;
   font-weight: 400;
   line-height: 24px;
 }
@@ -88,42 +89,35 @@ export default {
   line-height: 24px;
   background: transparent;
   border: 1px solid #000;
-  color: #000;
 }
 .banner-dark .shop-button {
   border: 1px solid #fff;
   color: #fff;
 }
 .banner-image {
-  width: 360px;
+  width: 100%;
   height: 360px;
-}
-
-@media (max-width: 1460px) {
-.banner-image {
-    width: 100%;
-    height: auto;
-}
+  object-fit: contain;
 }
 
 @media (max-width: 991px) {
-  .banner {
-    min-width: 50%;
+  .content-wrapper {
+    text-align: center;
+    padding: 10px 32px 100px;
   }
-}
-
-@media (max-width: 640px) {
-  .title {
-    font-size: 28px;
-    line-height: 40px;
+  .title, .description, .shop-button {
+    font-family: "Abel", sans-serif !important;
+    font-style: normal !important;
+  }
+  .title{
+    font-size: 49px;
+  }
+  .description{
+    line-height: 26px;
   }
   .shop-button {
-    padding: 12px 40px;
-    font-size: 14px;
-  }
-  .banner-image {
-    width: 280px;
-    height: 280px;
+    width: 173px;
+    margin: 0 auto;
   }
 }
 </style>
