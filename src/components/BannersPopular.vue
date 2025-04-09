@@ -1,46 +1,92 @@
 <template>
   <section class="banner-container">
-    <BannerPopular
-      title="Popular Products"
-      description="iPad combines a magnificent 10.2-inch Retina display, incredible performance, multitasking and ease of use."
-      image="/images/banner1.png"
-      categoryId="2"
-    />
+    <!-- Мобильная версия -->
+    <div v-if="isMobile" class="mobile-slider">
+      <BannerPopular v-bind="banners[currentIndex]" :class="banners[currentIndex].class" />
 
-    <BannerPopular
-      title="Ipad Pro"
-      description="iPad combines a magnificent 10.2-inch Retina display, incredible performance, multitasking and ease of use."
-      image="/images/banner2.png"
-      categoryId="4"
-      class="light"
-    />
+      <!-- Кружки-переключатели -->
+      <div class="pagination-dots">
+        <span
+          v-for="(_, index) in banners"
+          :key="index"
+          class="dot"
+          :class="{ active: index === currentIndex }"
+          @click="currentIndex = index"
+        />
+      </div>
+    </div>
 
-    <BannerPopular
-      title="Samsung Galaxy"
-      description="iPad combines a magnificent 10.2-inch Retina display, incredible performance, multitasking and ease of use."
-      image="/images/banner3.png"
-      categoryId="2"
-      class="gray"
-    />
-
-    <BannerPopular
-      title="Macbook Pro"
-      description="iPad combines a magnificent 10.2-inch Retina display, incredible performance, multitasking and ease of use."
-      image="/images/banner4.png"
-      imageAlt="Macbook Pro"
-      categoryId="3"
-      isDark
-    />
+    <!-- Десктоп версия -->
+    <template v-else>
+      <BannerPopular v-for="(banner, index) in banners" :key="index" v-bind="banner" :class="banner.class" />
+    </template>
   </section>
 </template>
 
 <script lang="ts">
+import { defineComponent, ref, onMounted, onBeforeUnmount } from "vue";
 import BannerPopular from "./BannerPopular.vue";
 
-export default {
+export default defineComponent({
   name: "BannersPopular",
   components: { BannerPopular },
-};
+  setup() {
+    const currentIndex = ref(0);
+    const isMobile = ref(window.innerWidth <= 991);
+
+    const banners = ref([
+      {
+        title: "Popular Products",
+        description:
+          "iPad combines a magnificent 10.2-inch Retina display, incredible performance, multitasking and ease of use.",
+        image: "/images/banner1.png",
+        categoryId: "2",
+      },
+      {
+        title: "Ipad Pro",
+        description:
+          "iPad combines a magnificent 10.2-inch Retina display, incredible performance, multitasking and ease of use.",
+        image: "/images/banner2.png",
+        categoryId: "4",
+        class: "light",
+      },
+      {
+        title: "Samsung Galaxy",
+        description:
+          "iPad combines a magnificent 10.2-inch Retina display, incredible performance, multitasking and ease of use.",
+        image: "/images/banner3.png",
+        categoryId: "2",
+        class: "gray",
+      },
+      {
+        title: "Macbook Pro",
+        description:
+          "iPad combines a magnificent 10.2-inch Retina display, incredible performance, multitasking and ease of use.",
+        image: "/images/banner4.png",
+        categoryId: "3",
+        isDark: true,
+      },
+    ]);
+
+    const checkIsMobile = () => {
+      isMobile.value = window.innerWidth <= 991;
+    };
+
+    onMounted(() => {
+      window.addEventListener("resize", checkIsMobile);
+    });
+
+    onBeforeUnmount(() => {
+      window.removeEventListener("resize", checkIsMobile);
+    });
+
+    return {
+      banners,
+      currentIndex,
+      isMobile,
+    };
+  },
+});
 </script>
 
 <style scoped>
@@ -58,8 +104,27 @@ export default {
 .gray {
   background-color: #eaeaea;
 }
-@media (max-width: 991px) {
-  .banner-container {
-  }
+.mobile-slider {
+  width: 100%;
+  position: relative;
+}
+.pagination-dots {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  margin-top: -56px;
+  gap: 9px;
+  z-index: 1000;
+}
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #d0d0d0;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.dot.active {
+  background-color: #000;
 }
 </style>

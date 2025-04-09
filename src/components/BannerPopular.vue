@@ -10,14 +10,6 @@
 </template>
 
 <script lang="ts">
-interface Props {
-  title: string;
-  description: string;
-  image: string;
-  imageAlt: string;
-  isDark?: boolean;
-}
-
 export default {
   name: "BannerPopular",
   props: {
@@ -101,6 +93,9 @@ export default {
 }
 
 @media (max-width: 991px) {
+  .banner, .banner-dark {
+    max-width: 100%;
+  }
   .content-wrapper {
     text-align: center;
     padding: 10px 32px 100px;
