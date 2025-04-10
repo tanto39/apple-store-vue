@@ -41,14 +41,14 @@ export default defineComponent({
 .dropdown-button {
   background: white;
   border: 1px solid #ccc;
-  padding: 8px 12px;
+  padding: 10px 12px;
   border-radius: 8px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 200px;
-  font: 16px Abel, Helvetica, Arial, sans-serif;
+  width: 256px;
+  font: 15px Abel, Helvetica, Arial, sans-serif;
 }
 
 .arrow {

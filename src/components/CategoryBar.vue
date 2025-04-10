@@ -49,7 +49,7 @@ export default defineComponent({
   width: 100%;
   flex-wrap: wrap;
   background-color: #fff;
-  padding: 0 0 16px 0;
+  margin-bottom: 24px;
 }
 .counter-container {
   display: flex;
@@ -57,19 +57,23 @@ export default defineComponent({
   align-items: flex-end;
   gap: 6px;
 }
-
 .counter-label {
   color: #6c6c6c;
   font-size: 16px;
   line-height: 16px;
   letter-spacing: 0.48px;
 }
-
 .counter-value {
   color: #000;
   text-align: center;
   font-size: 20px;
   line-height: 16px;
   letter-spacing: 0.6px;
+}
+
+@media (max-width: 991px) {
+.counter-label, .counter-value {
+  font-family: 'Abel', sans-serif;
+}
 }
 </style>

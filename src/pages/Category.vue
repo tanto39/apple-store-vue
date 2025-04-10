@@ -1,7 +1,7 @@
 <template>
   <div class="category-container">
     <div class="category">
-      <Filter />
+      <Filter class="filter-block"/>
       <div class="product-list">
         <CategoryBar />
         <Loader v-if="isLoading" />
@@ -56,5 +56,16 @@ export default defineComponent({
 .product-list {
   margin: 0 0 0 32px;
   width: 100%;
+}
+@media (max-width: 991px) {
+  .category{
+    padding: 24px 5px 56px 5px;
+  }
+  .filter-block{
+    display: none;
+  }
+  .product-list{
+    margin: 0;
+  }
 }
 </style>

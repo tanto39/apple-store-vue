@@ -14,8 +14,18 @@
     <div class="range-slider" ref="slider">
       <div class="slider-track"></div>
       <div class="slider-progress" :style="progressStyle"></div>
-      <div class="slider-thumb" :style="minThumbStyle" @mousedown="startDrag('min')"></div>
-      <div class="slider-thumb" :style="maxThumbStyle" @mousedown="startDrag('max')"></div>
+      <div
+        class="slider-thumb"
+        :style="minThumbStyle"
+        @mousedown="startDrag('min')"
+        @touchstart.prevent="startDrag('min')"
+      ></div>
+      <div
+        class="slider-thumb"
+        :style="maxThumbStyle"
+        @mousedown="startDrag('max')"
+        @touchstart.prevent="startDrag('max')"
+      ></div>
     </div>
   </div>
 </template>
@@ -149,11 +159,16 @@ export default defineComponent({
   position: absolute;
   top: 0;
   cursor: pointer;
+  touch-action: none;
+  user-select: none;
 }
 .slider-thumb:first-child {
   left: 0;
 }
 .slider-thumb:last-child {
   left: 70%;
+  transform: translateX(-100%);
+}
+@media (max-width: 991px) {
 }
 </style>

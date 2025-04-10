@@ -36,7 +36,7 @@ const toggleDropdown = () => {
 <style scoped>
 .dropdown-section {
   width: 100%;
-  margin-top: 24px;
+  margin-bottom: 24px;
 }
 
 .dropdown-header {
@@ -44,21 +44,23 @@ const toggleDropdown = () => {
   display: flex;
   width: 100%;
   padding: 12px 0;
-  align-items: start;
+  align-items: center;
   font-size: 18px;
   color: #000;
   font-weight: 400;
   letter-spacing: 0.54px;
-  line-height: 1;
   justify-content: space-between;
   background: none;
   border: none;
   cursor: pointer;
   text-align: left;
+  border-bottom: 1px solid #B5B5B5;
 }
 
 .dropdown-title {
   flex: 1;
+  font-size: 18px;
+  line-height: 24px;
 }
 
 .dropdown-icon {

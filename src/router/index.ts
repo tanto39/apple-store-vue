@@ -4,6 +4,7 @@ import Category from '../pages/Category.vue'
 import ProductDetail from '../pages/ProductDetail.vue'
 import Cart from '../pages/Cart.vue'
 import Favorites from '../pages/Favorites.vue'
+import FilterMobile from '../pages/FilterMobile.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -30,6 +31,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/favorites',
     name: 'Favorites',
     component: Favorites
+  },
+  {
+    path: '/filter/:id',
+    name: 'FilterMobile',
+    component: FilterMobile
   },
 ]
 

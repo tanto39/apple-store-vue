@@ -52,4 +52,10 @@ export default defineComponent({
   width: 100%;
   padding: 0 1px;
 }
+
+@media (max-width: 991px) {
+  .filter-section {
+    max-width: 100%;
+  }
+}
 </style>

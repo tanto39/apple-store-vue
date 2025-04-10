@@ -59,7 +59,6 @@ export default defineComponent({
   font-weight: 400;
   line-height: 24px;
 }
-
 .checkbox-indicator {
   border-radius: 3px;
   border: 1px solid rgba(211, 211, 211, 1);
@@ -72,25 +71,24 @@ export default defineComponent({
   width: 16px;
   height: 16px;
 }
-
 .checkbox-indicator_selected {
   background: #000000 url("../../assets/check.svg") center center no-repeat;
   border: 1px solid #000000;
 }
-
 .checkbox-label {
   align-self: stretch;
   margin: auto 0;
   flex: 1;
 }
-
 .label-text {
   font-size: 15px;
+  line-height: 24px;
 }
-
 .count-text {
   font-size: 12px;
   color: rgba(146, 146, 146, 1);
   margin-left: 4px;
+  font-family: 'Abel', sans-serif;
+  line-height: 24px;
 }
 </style>

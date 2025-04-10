@@ -74,12 +74,10 @@ export default defineComponent({
 .searchable-filter {
   width: 100%;
 }
-
 .search-field {
   width: auto;
-  padding: 8px 16px;
+  padding: 11px 16px;
 }
-
 .options-list {
   display: flex;
   flex-direction: column;
