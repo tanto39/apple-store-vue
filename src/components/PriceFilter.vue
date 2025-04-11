@@ -113,16 +113,20 @@ export default defineComponent({
   background-color: rgba(255, 255, 255, 1);
   border: 1px solid rgba(159, 159, 159, 1);
   padding: 8px;
-  width: 106px;
+  width: 30%;
   text-align: left;
   font-family: inherit;
+}
+.range-label, .range-input {
+  font-family: 'Abel', sans-serif;
+  font-size: 14px;
+  line-height: 24px;
 }
 .range-separator {
   border: 1px solid rgba(231, 231, 231, 1);
   align-self: stretch;
   margin: auto 0;
   width: 20px;
-  height: 1px;
 }
 .range-slider {
   position: relative;
@@ -168,7 +172,5 @@ export default defineComponent({
 .slider-thumb:last-child {
   left: 70%;
   transform: translateX(-100%);
-}
-@media (max-width: 991px) {
 }
 </style>

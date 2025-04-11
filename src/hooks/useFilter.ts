@@ -30,10 +30,15 @@ export const useFilter = () => {
     });
   };
 
+  const hasSelectedCharacteristics = (charName: string) => {
+    return Boolean(selectedCharacteristics.value[charName]?.length);
+  };
+
   return {
     characteristics,
     selectedCharacteristics,
     setPriceRange,
     setCharacteristicFilter,
+    hasSelectedCharacteristics
   };
 };

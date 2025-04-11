@@ -85,4 +85,13 @@ export default defineComponent({
   margin-top: 16px;
   width: 100%;
 }
+@media (max-width: 991px) {
+  .options-list {
+    max-height: 315px;
+    overflow: scroll;
+  }
+  .searchable-filter {
+    width: 94%;
+  }
+}
 </style>

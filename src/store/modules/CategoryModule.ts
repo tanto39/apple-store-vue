@@ -15,6 +15,7 @@ export interface CategoryState {
   sortBy: "rating" | "price" | "createdAt";
   currentPage: number;
   itemsPerPage: number;
+  currentCategoryId: number | null;
 }
 
 const module: Module<CategoryState, RootState> = {
@@ -29,6 +30,7 @@ const module: Module<CategoryState, RootState> = {
     sortBy: "rating",
     currentPage: 1,
     itemsPerPage: 12,
+    currentCategoryId: null,
   }),
   mutations: {
     SET_LOADING(state, payload: boolean) {
@@ -49,14 +51,30 @@ const module: Module<CategoryState, RootState> = {
     SET_PAGE(state, page) {
       state.currentPage = page;
     },
+    SET_CATEGORY_ID(state, payload: number) {
+      state.currentCategoryId = payload;
+    },
   },
   actions: {
-    async loadProducts({ commit }, categoryId: number) {
+    async loadProducts({ commit, state }, categoryId: number) {
+      // Проверяем изменение категории
+      if (state.currentCategoryId === categoryId) return;
+
+      // Обновляем ID текущей категории
+      commit("SET_CATEGORY_ID", categoryId);
+
+      // Сброс состояния только при изменении категории
+      commit("SET_PRODUCTS", []);
+      commit("SET_FILTERS", {
+        characteristics: {},
+        priceRange: undefined,
+      });
+      commit("SET_SORT", "rating");
+      commit("SET_PAGE", 1);
+      commit("SET_ERROR", null);
+
       try {
         commit("SET_LOADING", true);
-        commit("SET_ERROR", null);
-        commit("SET_PAGE", 1);
-
         const products = await fetchCategoryProducts(categoryId);
         commit("SET_PRODUCTS", products);
       } catch (error) {

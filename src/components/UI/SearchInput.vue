@@ -61,4 +61,11 @@ export default defineComponent({
   color: gray;
   font-style: italic;
 }
+
+@media (max-width: 991px) {
+  .search-input, .search-input::placeholder {
+    font-family: 'Abel', sans-serif;
+    font-style: normal;
+  }
+}
 </style>

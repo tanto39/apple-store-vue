@@ -64,12 +64,11 @@ export default defineComponent({
   border: 1px solid rgba(211, 211, 211, 1);
   align-self: stretch;
   display: flex;
-  min-height: 16px;
   margin: auto 0;
   align-items: center;
   justify-content: center;
-  width: 16px;
-  height: 16px;
+  width: 15px;
+  height: 15px;
 }
 .checkbox-indicator_selected {
   background: #000000 url("../../assets/check.svg") center center no-repeat;
@@ -90,5 +89,10 @@ export default defineComponent({
   margin-left: 4px;
   font-family: 'Abel', sans-serif;
   line-height: 24px;
+}
+@media (max-width: 991px) {
+  .label-text {
+    font-family: 'Abel', sans-serif;
+  }
 }
 </style>

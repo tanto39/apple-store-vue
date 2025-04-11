@@ -4,7 +4,12 @@
       <PriceFilter @update:price="setPriceRange" />
     </DropdownSection>
 
-    <DropdownSection v-for="char in characteristics" :key="char.name" :title="char.name" :isOpen="false">
+    <DropdownSection
+      v-for="char in characteristics"
+      :key="char.name"
+      :title="char.name"
+      :isOpen="hasSelectedCharacteristics(char.name)"
+    >
       <SearchableFilter
         :options="
           char.values.map((v) => ({
@@ -34,13 +39,20 @@ export default defineComponent({
     SearchableFilter,
   },
   setup() {
-    const { characteristics, selectedCharacteristics, setPriceRange, setCharacteristicFilter } = useFilter();
+    const {
+      characteristics,
+      selectedCharacteristics,
+      setPriceRange,
+      setCharacteristicFilter,
+      hasSelectedCharacteristics,
+    } = useFilter();
 
     return {
       characteristics,
       selectedCharacteristics,
       setPriceRange,
       setCharacteristicFilter,
+      hasSelectedCharacteristics,
     };
   },
 });

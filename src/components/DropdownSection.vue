@@ -1,10 +1,6 @@
 <template>
   <div class="dropdown-section">
-    <button
-      class="dropdown-header"
-      @click="toggleDropdown"
-      :aria-expanded="isOpen"
-    >
+    <button class="dropdown-header" @click="toggleDropdown" :aria-expanded="isOpen">
       <span class="dropdown-title">{{ title }}</span>
       <div :class="['dropdown-icon', { 'dropdown-icon_open': isOpen }]"></div>
     </button>
@@ -54,7 +50,7 @@ const toggleDropdown = () => {
   border: none;
   cursor: pointer;
   text-align: left;
-  border-bottom: 1px solid #B5B5B5;
+  border-bottom: 1px solid #b5b5b5;
 }
 
 .dropdown-title {
@@ -66,7 +62,7 @@ const toggleDropdown = () => {
 .dropdown-icon {
   width: 24px;
   height: 12px;
-  background: url('../assets/dropdown.svg') center center no-repeat;
+  background: url("../assets/dropdown.svg") center center no-repeat;
   flex-shrink: 0;
 }
 .dropdown-icon_open {
@@ -75,5 +71,11 @@ const toggleDropdown = () => {
 
 .dropdown-content {
   margin-top: 24px;
+}
+
+@media (max-width: 991px) {
+  .dropdown-title {
+    font-family: "Abel", sans-serif;
+  }
 }
 </style>
