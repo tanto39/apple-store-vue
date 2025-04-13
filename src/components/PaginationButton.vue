@@ -44,4 +44,10 @@ export default defineComponent({
   background-color: #000;
   color: #fff;
 }
+@media (max-width: 991px) {
+  .page-button {
+    font-family: 'Abel', sans-serif;
+    font-style: normal;
+  }
+}
 </style>

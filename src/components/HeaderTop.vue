@@ -130,7 +130,7 @@ export default defineComponent({
     margin-bottom: 16px;
   }
   .header__buttons {
-    justify-content: flex-start;
+    justify-content: center;
     gap: 20px;
   }
 }

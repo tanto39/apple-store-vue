@@ -1,13 +1,16 @@
 <template>
-  <nav class="pagination" aria-label="Pagination">
+  <nav class="pagination" aria-label="Pagination" v-if="pages.length > 0">
     <button @click="prevPage" class="nav-button">
       <img src="/images/pag-left.svg" class="nav-icon" alt="" />
     </button>
 
     <div class="page-numbers">
-      <PaginationButton v-for="page in pages" :key="page" :isActive="currentPage === page" @click="setPage(page)">
-        {{ page }}
-      </PaginationButton>
+      <template v-for="page in pages" :key="page">
+        <span class="dots" v-if="page === '....'">....</span>
+        <PaginationButton v-else :isActive="currentPage === page" @click="setPage(page as number)">
+          {{ page }}
+        </PaginationButton>
+      </template>
     </div>
 
     <button @click="nextPage" class="nav-button">
@@ -19,37 +22,19 @@
 <script lang="ts">
 import { defineComponent, computed } from "vue";
 import PaginationButton from "./PaginationButton.vue";
+import { usePagination } from "@/hooks/usePagination";
 
 export default defineComponent({
   name: "Pagination",
   components: { PaginationButton },
-  props: {
-    currentPage: { type: Number, required: true },
-    totalItems: { type: Number, required: true },
-    itemsPerPage: { type: Number, required: true },
-  },
   emits: ["page-change"],
   setup(props, { emit }) {
-    const totalPages = computed(() => Math.ceil(props.totalItems / props.itemsPerPage));
+    const { pages, currentPage, itemsPerPage, setPage } = usePagination();
 
-    const pages = computed(() => {
-      const range: Array<number> = [];
-      for (let i = 1; i <= totalPages.value; i++) {
-        range.push(i);
-      }
-      return range;
-    });
+    const prevPage = () => setPage(currentPage.value - 1);
+    const nextPage = () => setPage(currentPage.value + 1);
 
-    const setPage = (page: number) => {
-      if (page >= 1 && page <= totalPages.value) {
-        emit("page-change", page);
-      }
-    };
-
-    const prevPage = () => setPage(props.currentPage - 1);
-    const nextPage = () => setPage(props.currentPage + 1);
-
-    return { pages, setPage, prevPage, nextPage };
+    return { pages, currentPage, itemsPerPage, setPage, prevPage, nextPage };
   },
 });
 </script>
@@ -69,7 +54,6 @@ export default defineComponent({
   letter-spacing: 0.48px;
   justify-content: center;
 }
-
 .page-numbers {
   align-self: stretch;
   display: flex;
@@ -78,7 +62,6 @@ export default defineComponent({
   gap: 8px;
   justify-content: flex-start;
 }
-
 .ellipsis {
   display: flex;
   min-height: 6px;
@@ -96,7 +79,6 @@ export default defineComponent({
   align-items: center;
   justify-content: center;
 }
-
 .nav-icon {
   aspect-ratio: 1;
   object-fit: contain;
@@ -106,9 +88,14 @@ export default defineComponent({
   margin: auto;
   flex-shrink: 0;
 }
-
 .nav-button:last-child .nav-icon {
   width: 23px;
   aspect-ratio: 0.96;
+}
+.dots {
+  font-size: 25px;
+  color: #737373;
+  line-height: 0.9;
+  letter-spacing: -1px;
 }
 </style>

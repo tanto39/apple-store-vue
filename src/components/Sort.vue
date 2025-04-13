@@ -37,7 +37,6 @@ export default defineComponent({
   position: relative;
   display: inline-block;
 }
-
 .dropdown-button {
   background: white;
   border: 1px solid #ccc;
@@ -50,14 +49,12 @@ export default defineComponent({
   width: 256px;
   font: 15px Abel, Helvetica, Arial, sans-serif;
 }
-
 .arrow {
   margin-left: auto;
   background: url("../assets/Sort.svg") center center no-repeat;
   width: 24px;
   height: 12px;
 }
-
 .dropdown-menu {
   position: absolute;
   top: 100%;
@@ -70,14 +67,21 @@ export default defineComponent({
   margin: 4px 0 0;
   width: 100%;
 }
-
 .dropdown-menu li {
   padding: 8px 12px;
   cursor: pointer;
   font: 14px Abel, Helvetica, Arial, sans-serif;
 }
-
 .dropdown-menu li:hover {
   background: #f0f0f0;
+}
+@media (max-width: 991px) {
+  .dropdown {
+    flex: 1;
+  }
+  .dropdown-button {
+    width: 100%;
+    padding: 17px 16px;
+  }
 }
 </style>

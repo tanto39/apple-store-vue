@@ -132,7 +132,7 @@ export default defineComponent({
   position: relative;
   display: flex;
   margin-top: 16px;
-  width: 100%;
+  width: 96%;
   align-items: start;
   gap: 40px 99px;
   justify-content: start;
@@ -142,7 +142,7 @@ export default defineComponent({
   border-radius: 2px;
   background-color: rgba(206, 206, 206, 1);
   position: absolute;
-  width: 100%;
+  width: 104%;
   height: 4px;
   top: 4px;
 }
@@ -171,6 +171,5 @@ export default defineComponent({
 }
 .slider-thumb:last-child {
   left: 70%;
-  transform: translateX(-100%);
 }
 </style>

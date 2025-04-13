@@ -1,19 +1,14 @@
 <template>
   <div class="category-container">
     <div class="category">
-      <Filter class="filter-block"/>
+      <Filter class="filter-block" />
       <div class="product-list">
         <CategoryBar />
         <Loader v-if="isLoading" />
         <ErrorMessage v-if="error" :message="error" />
         <ProductGrid v-if="paginatedProducts[0]" :products="paginatedProducts" />
         <p v-else>Products not found.</p>
-        <Pagination
-          :current-page="currentPage"
-          :total-items="filteredProducts.length"
-          :items-per-page="itemsPerPage"
-          @page-change="setPage"
-        />
+        <Pagination />
       </div>
     </div>
   </div>
@@ -31,16 +26,12 @@ export default defineComponent({
   name: "Category",
   components: { Filter, ProductGrid, CategoryBar, Pagination },
   setup() {
-    const { paginatedProducts, filteredProducts, currentPage, itemsPerPage, setPage, isLoading, error } = useCategory();
+    const { paginatedProducts, isLoading, error } = useCategory();
 
     return {
       paginatedProducts,
-      filteredProducts,
-      currentPage,
-      itemsPerPage,
-      setPage,
-      isLoading, 
-      error
+      isLoading,
+      error,
     };
   },
 });
@@ -58,13 +49,13 @@ export default defineComponent({
   width: 100%;
 }
 @media (max-width: 991px) {
-  .category{
-    padding: 24px 5px 56px 5px;
+  .category {
+    padding: 36px 5px 56px 5px;
   }
-  .filter-block{
+  .filter-block {
     display: none;
   }
-  .product-list{
+  .product-list {
     margin: 0;
   }
 }

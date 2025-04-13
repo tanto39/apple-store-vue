@@ -13,6 +13,7 @@ export const useFilter = () => {
       ...store.state.category.filters,
       priceRange: range,
     });
+    store.commit("category/SET_PAGE", 1);
   };
 
   const setCharacteristicFilter = (charName: string, values: string[]) => {
@@ -28,6 +29,8 @@ export const useFilter = () => {
       ...store.state.category.filters,
       characteristics: newCharacteristics,
     });
+
+    store.commit("category/SET_PAGE", 1);
   };
 
   const hasSelectedCharacteristics = (charName: string) => {
