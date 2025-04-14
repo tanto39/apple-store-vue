@@ -1,27 +1,29 @@
 <template>
-  <header class="header" :class="{ 'menu-open': isMenuOpen }" v-click-outside="closeMenu">
-    <router-link to="/" class="link">
-      <img alt="" src="../assets/Logo.svg" />
-    </router-link>
-    
-    <button class="hamburger" @click="toggleMenu">
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-    </button>
+  <header class="header-container">
+    <div class="header" :class="{ 'menu-open': isMenuOpen }" v-click-outside="closeMenu">
+      <router-link to="/" class="link">
+        <img alt="" src="../assets/Logo.svg" />
+      </router-link>
 
-    <div class="search-wrapper">
-      <SearchInput v-model="searchQuery" class="search-field" />
-      <SearchResults :search-query="searchQuery" @close="searchQuery = ''" />
-    </div>
-    
-    <div class="header__buttons">
-      <router-link to="/favorites" class="link" @click="closeMenu">
-        <img alt="" src="../assets/Favorite.svg" />
-      </router-link>
-      <router-link to="/cart" class="link" @click="closeMenu">
-        <img alt="" src="../assets/Cart.svg" />
-      </router-link>
+      <button class="hamburger" @click="toggleMenu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+
+      <div class="search-wrapper">
+        <SearchInput v-model="searchQuery" class="search-field" />
+        <SearchResults :search-query="searchQuery" @close="searchQuery = ''" />
+      </div>
+
+      <div class="header__buttons">
+        <router-link to="/favorites" class="link" @click="closeMenu">
+          <img alt="" src="../assets/Favorite.svg" />
+        </router-link>
+        <router-link to="/cart" class="link" @click="closeMenu">
+          <img alt="" src="../assets/Cart.svg" />
+        </router-link>
+      </div>
     </div>
   </header>
 </template>
@@ -62,6 +64,9 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.header-container {
+  border-bottom: 1px solid #b5b5b5;
+}
 .header {
   display: flex;
   height: 87px;
@@ -69,7 +74,6 @@ export default defineComponent({
   margin: 0 auto;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #b5b5b5;
   flex-wrap: wrap;
   position: relative;
   padding: 0 16px;
@@ -108,7 +112,7 @@ export default defineComponent({
 @media (max-width: 991px) {
   .header {
     height: auto;
-    padding: 16px;
+    padding: 25px 16px;
   }
   .hamburger {
     display: block;

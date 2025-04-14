@@ -3,6 +3,7 @@
     <h2 class="cart-title">Shopping Cart</h2>
     <div v-if="products?.length > 0" class="cart-items">
       <CartItem
+        class="cart-item"
         v-for="product in products"
         :key="product.id"
         :product="product"
@@ -37,7 +38,7 @@ export default defineComponent({
 
 <style scoped>
 .shopping-cart {
-  width: 50%;
+  width: 66%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -58,14 +59,15 @@ export default defineComponent({
   width: 100%;
   border-radius: 15px;
 }
+.cart-item {
+  border-bottom: 1px solid #a3a3a3;
+}
+.cart-items .cart-item:last-child {
+  border-bottom: none;
+}
 @media (max-width: 991px) {
   .shopping-cart {
-    padding: 20px;
-  }
-}
-@media (max-width: 640px) {
-  .shopping-cart {
-    padding: 16px;
+    width: 100%;
   }
 }
 </style>

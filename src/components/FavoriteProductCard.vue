@@ -34,10 +34,9 @@ export default defineComponent({
   align-items: center;
   gap: 15px;
   justify-content: start;
-  border-top: 1px solid #A3A3A3;
+  border-top: 1px solid #a3a3a3;
   cursor: pointer;
 }
-
 .product-image {
   aspect-ratio: 1;
   object-fit: contain;
@@ -47,7 +46,6 @@ export default defineComponent({
   margin: auto 0;
   flex-shrink: 0;
 }
-
 .product-content {
   align-self: stretch;
   display: flex;
@@ -59,7 +57,6 @@ export default defineComponent({
   flex-shrink: 1;
   flex-basis: 0%;
 }
-
 .product-info {
   align-self: stretch;
   min-width: 106px;
@@ -69,21 +66,21 @@ export default defineComponent({
   flex-shrink: 1;
   flex-basis: 0%;
 }
-
 .product-name {
   font-size: 16px;
   font-style: italic;
 }
-
 .product-id {
-  font-family:
-    Abel,
-    -apple-system,
-    Roboto,
-    Helvetica,
-    sans-serif;
+  font-family: Abel, -apple-system, Roboto, Helvetica, sans-serif;
   font-size: 14px;
   line-height: 24px;
-  margin-top: 8px;
+  margin-top: 0;
+}
+
+@media (max-width: 991px) {
+  .product-name {
+    font-family: "Abel", sans-serif;
+    font-style: normal;
+  }
 }
 </style>

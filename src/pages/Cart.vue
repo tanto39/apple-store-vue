@@ -23,4 +23,12 @@ export default defineComponent({
   margin: 112px auto;
   gap: 48px;
 }
+@media (max-width: 991px) {
+  .container {
+    margin: 40px auto;
+    flex-direction: column;
+    padding: 0 5px;
+    gap: 0;
+  }
+}
 </style>

@@ -33,7 +33,6 @@ export default defineComponent({
 }
 
 .spec-label {
-  color: #000;
   font-family: Abel;
   font-size: 16px;
   font-weight: 400;
@@ -42,7 +41,6 @@ export default defineComponent({
 
 .spec-value {
   text-align: right;
-  color: #000;
   font-family: Abel, Arial, Helvetica, sans-serif;
   font-size: 15px;
   font-weight: 400;
@@ -50,20 +48,7 @@ export default defineComponent({
 }
 
 @media (max-width: 991px) {
-  .spec-label {
-    font-size: 15px;
-  }
-  .spec-value {
-    font-size: 14px;
-  }
+  
 }
 
-@media (max-width: 640px) {
-  .spec-label {
-    font-size: 14px;
-  }
-  .spec-value {
-    font-size: 13px;
-  }
-}
 </style>

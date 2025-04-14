@@ -1,5 +1,6 @@
 <template>
   <div class="rating-container">
+    <HomeTitle class="title" title="Reviews" />
     <article class="rating">
       <div class="rating-inner">
         <div class="rating-top">
@@ -14,9 +15,13 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import HomeTitle from "./HomeTitle.vue";
 
 export default defineComponent({
   name: "Rating",
+  components: {
+    HomeTitle
+  },
   props: {
     rating: {
       type: Number,
@@ -35,7 +40,7 @@ export default defineComponent({
 <style scoped>
 .rating-container {
   max-width: 1120px;
-  margin: 88px auto 0 auto;
+  margin: 88px auto 88px auto;
 }
 .rating {
   border-radius: 25px;
@@ -51,29 +56,54 @@ export default defineComponent({
   align-items: center;
   flex-direction: column;
 }
-
 .rating-inner {
   display: flex;
   flex-direction: column;
 }
-
 .rating-score {
   font-size: 56px;
   line-height: 1;
   margin: 0;
 }
-
 .review-count {
   font-size: 15px;
   line-height: 1;
   opacity: 0.3;
-  margin: 16px 0 0 0;
+  margin: 12px 0 0 0;
 }
-
 .rating-image {
   background: url("../assets/Stars.svg") center center no-repeat;
   width: 136px;
   height: 32px;
-  margin-top: 16px;
+  margin-top: 10px;
+}
+.title {
+  display: none;
+}
+
+@media (max-width: 991px) {
+  .title {
+    display: block;
+  }
+  .rating-container {
+    padding: 0 5px;
+    margin: 88px auto 40px auto;
+  }
+  .rating {
+    margin-top: 8px;
+    width: 100%;
+    height: 152px;
+    align-items: flex-start;
+  }
+  .rating-inner {
+    flex-direction: row;
+    margin-left: 52px;
+    align-items: center;
+    gap: 30px;
+  }
+  .rating-score, .review-count {
+    font-family: 'Abel', sans-serif;
+    font-style: normal;
+  }
 }
 </style>

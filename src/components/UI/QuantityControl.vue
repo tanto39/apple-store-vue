@@ -39,11 +39,10 @@ export default defineComponent({
   align-items: center;
   gap: 8px;
 }
-
 .quantity-value {
   color: #000;
   width: 32px;
-  height: 32px;
+  height: 30px;
   text-align: center;
   border-radius: 4px;
   border: 0.5px solid #d9d9d9;
@@ -65,5 +64,11 @@ input::-webkit-inner-spin-button {
 }
 .icon-plus {
   background: url("../../assets/plus.svg") center center no-repeat;
+}
+@media (max-width: 991px) {
+  .quantity-value {
+    font-family: 'Abel', sans-serif;
+    font-style: normal;
+  }
 }
 </style>

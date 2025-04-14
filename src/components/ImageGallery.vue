@@ -42,25 +42,21 @@ export default defineComponent({
   align-items: center;
   gap: 48px;
 }
-
 .thumbnails {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 24px;
 }
-
 .thumbnail {
   width: 75px;
   height: 93px;
   opacity: 0.4;
   cursor: pointer;
 }
-
 .thumbnail_active {
   opacity: 1;
 }
-
 .main-image__img {
   width: 413px;
   height: 516px;
@@ -71,15 +67,24 @@ export default defineComponent({
   .gallery {
     width: 100%;
     flex-direction: column;
+    gap: 30px;
   }
-
   .thumbnails {
+    order: 2;
     flex-direction: row;
   }
-
+  .thumbnail {
+    width: 66px;
+    height: 74px;
+  }
+  .main-image {
+    order: 1;
+  }
   .main-image__img {
-    width: 100%;
+    width: 90%;
     height: auto;
+    margin: 0 auto;
+    display: block;
   }
 }
 </style>

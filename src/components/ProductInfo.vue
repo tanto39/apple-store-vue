@@ -39,23 +39,22 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 24px;
+  gap: 16px;
   width: 100%;
 }
-
 .product-title {
   font-size: 40px;
   font-style: italic;
   color: #000;
-  line-height: 40px;
+  line-height: 1;
+  margin: 0;
 }
-
 .price-container {
   display: flex;
   align-items: center;
   gap: 16px;
+  height: 48px;
 }
-
 .current-price {
   font-size: 32px;
   font-style: italic;
@@ -63,7 +62,6 @@ export default defineComponent({
   line-height: 48px;
   letter-spacing: 0.96px;
 }
-
 .original-price {
   font-family: "Abel", sans-serif;
   font-size: 24px;
@@ -72,15 +70,14 @@ export default defineComponent({
   line-height: 32px;
   letter-spacing: 0.72px;
 }
-
 .description {
   color: #6c6c6c;
   font-family: "Abel", sans-serif;
   font-size: 14px;
   line-height: 24px;
   letter-spacing: 0.42px;
+  margin: 8px 0 0 0;
 }
-
 .read-more {
   color: #2c2c2c;
   text-decoration: underline;
@@ -92,14 +89,15 @@ export default defineComponent({
 }
 
 @media (max-width: 640px) {
-  .product-title {
-    font-size: 32px;
-    line-height: 36px;
+  .product-title, .current-price {
+    font-family: "Abel", sans-serif;
+    font-style: normal;
   }
-
-  .price-container {
-    flex-direction: column;
-    align-items: flex-start;
+  .product-title {
+    margin: 10px 0;
+  }
+  .product-content {
+    gap: 10px;
   }
 }
 </style>

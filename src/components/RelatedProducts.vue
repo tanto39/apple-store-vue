@@ -43,21 +43,15 @@ export default defineComponent({
 
 <style scoped>
 .related-products {
-  padding: 56px 0;
   max-width: 1120px;
-  margin: 0 auto;
+  margin: 80px auto;
   gap: 32px;
 }
 
 @media (max-width: 991px) {
   .related-products {
-    padding: 40px 0;
-  }
-}
-
-@media (max-width: 640px) {
-  .related-products {
-    padding: 20px 0;
+    margin: 0 auto 40px 0;
+    padding: 0 5px;
   }
 }
 </style>

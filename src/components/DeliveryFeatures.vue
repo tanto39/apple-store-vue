@@ -41,7 +41,6 @@ const deliveryFeatures: DeliveryFeature[] = [
   gap: 32px;
   width: 100%;
 }
-
 .feature-item {
   display: flex;
   align-items: center;
@@ -57,37 +56,27 @@ const deliveryFeatures: DeliveryFeature[] = [
   border-radius: 11px;
   background: #F6F6F6;
 }
-
 .feature-content {
   display: flex;
   flex-direction: column;
+}
+.feature-title, .feature-subtitle{
   font-size: 14px;
   font-style: italic;
   line-height: 24px;
 }
-
 .feature-title {
   color: #717171;
 }
 
-.feature-subtitle {
-  color: #000;
-}
-
 @media (max-width: 991px) {
-  .features-container {
-    flex-direction: column;
-    gap: 16px;
-  }
-}
-
-@media (max-width: 640px) {
-  .features-container {
-    gap: 12px;
-  }
-
   .feature-item {
-    width: 100%;
+    flex-direction: column;
+    text-align: center;
+  }
+  .feature-title, .feature-subtitle {
+    font-family: "Abel", sans-serif;
+    font-style: normal;
   }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <section v-if="cartItems[0]" class="summary">
+  <section v-if="cartItems.length > 0" class="summary">
     <h2 class="order-summary">Order Summary</h2>
     <div class="content">
       <div class="summary-block">
@@ -78,33 +78,26 @@ export default defineComponent({
   padding: 56px 64px;
   font-weight: 400;
 }
-
 .order-summary {
   color: rgba(17, 17, 17, 1);
   font-size: 20px;
-  font-family: ABeeZee, -apple-system, Roboto, Helvetica, sans-serif;
-  line-height: 0.8;
+  line-height: 1;
+  margin: 0;
 }
-
 .content {
   margin-top: 40px;
   width: 100%;
 }
-
 .summary-block {
   width: 100%;
 }
-
 .input-fields {
   width: 100%;
 }
-
 .prices {
   margin-top: 24px;
   width: 100%;
-  font-size: 16px;
 }
-
 .price-row {
   display: flex;
   justify-content: space-between;
@@ -112,50 +105,44 @@ export default defineComponent({
   width: 100%;
   letter-spacing: 0.48px;
 }
-
-.price-label {
-  color: #000;
-}
-
 .price-label.secondary {
   color: rgba(84, 84, 84, 1);
   font-family: Abel, -apple-system, Roboto, Helvetica, sans-serif;
 }
-
 .price-amount {
-  color: #000;
   line-height: 32px;
 }
-
 .taxes {
   margin-top: 16px;
 }
-
 .taxes .price-row + .price-row {
   margin-top: 8px;
 }
-
 .total {
   margin-top: 16px;
 }
-
 .checkout-button {
   width: 100%;
   margin-top: 48px;
-  padding: 16px 56px;
+  padding: 18px 56px;
   background-color: #000;
   color: #fff;
   border: none;
 }
+.checkout-button:hover {
+  background-color: #333;
+}
 
 @media (max-width: 991px) {
   .summary {
-    padding: 56px 20px;
+    width: auto;
+    padding: 56px 16px;
   }
-
+  .order-summary, .input-label, .price-label, .price-amount, .checkout-button {
+    font-family: 'Abel', sans-serif !important;
+    font-style: normal !important;
+  }
   .checkout-button {
-    padding: 16px 20px;
-    margin-top: 40px;
   }
 }
 </style>

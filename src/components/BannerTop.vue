@@ -7,7 +7,7 @@
           <div class="title">IPhone 14 Pro</div>
         </header>
         <p class="description">Created to change everything for the better. For everyone</p>
-        <ButtonStore class="cta-button"  @click="$router.push('/category/2')">Shop Now</ButtonStore>
+        <ButtonStore class="cta-button" @click.stop="$router.push('/category/2')">Shop Now</ButtonStore>
       </article>
       <figure class="image-container">
         <img src="../assets/Banner-top.png" alt="iPhone 14 Pro" class="product-image" />
@@ -79,6 +79,7 @@ export default defineComponent({
   line-height: 24px;
 }
 .cta-button {
+  position: relative;
   padding: 16px 56px;
   gap: 8px;
   border: 1px solid #fff;
@@ -87,6 +88,7 @@ export default defineComponent({
   font-weight: 400;
   line-height: 24px;
   background: transparent;
+  z-index: 1000;
 }
 .cta-button:hover {
   background: rgba(255, 255, 255, 0.1);

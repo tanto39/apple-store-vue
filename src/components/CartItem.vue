@@ -1,10 +1,10 @@
 <template>
   <article class="product-item">
     <div class="product-image">
-      <img :src="product.images[0]" :alt="product.name" width="90" height="90" />
+      <img :src="product.images[0]" :alt="product.name" width="90" height="90" @click="$router.push(`/product/${product.id}`)" />
     </div>
     <div class="product-content">
-      <div class="product-info">
+      <div class="product-info" @click="$router.push(`/product/${product.id}`)">
         <h3 class="product-name">{{ product.name }}</h3>
         <p class="product-sku">#{{ product.id }}</p>
       </div>
@@ -52,69 +52,53 @@ export default defineComponent({
 <style scoped>
 .product-item {
   display: flex;
-  padding: 16px 0;
+  padding: 16px 0 56px 0;
   align-items: center;
   gap: 15px;
   width: 100%;
 }
-
 .product-image {
   display: flex;
   width: 90px;
   height: 90px;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
-
-product-image__img {
-  width: 100%;
-}
-
 .product-content {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
   gap: 8px 0;
   flex: 1;
 }
-
 .product-info {
   display: flex;
-  min-width: 106px;
   flex-direction: column;
   align-items: flex-start;
   gap: 8px;
   flex: 1;
+  cursor: pointer;
 }
-
 .product-name {
   width: 100%;
-  color: #000;
-  font-family: ABeeZee;
   font-size: 16px;
   line-height: 24px;
   margin: 0;
 }
-
 .product-sku {
   width: 100%;
-  color: #000;
   font-family: Abel;
   font-size: 14px;
   line-height: 24px;
   margin: 0;
 }
-
 .product-actions {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   gap: 24px;
 }
-
 .product-price {
-  color: #000;
-  font-family: ABeeZee;
   font-size: 20px;
   line-height: 32px;
   letter-spacing: 0.6px;
@@ -126,5 +110,15 @@ product-image__img {
   border: none;
   padding: 0;
   cursor: pointer;
+}
+
+@media (max-width: 991px) {
+  .product-content {
+    flex-wrap: wrap;
+  }
+  .product-name, .product-actions, .product-price {
+    font-family: 'Abel', sans-serif;
+    font-style: normal;
+  }
 }
 </style>

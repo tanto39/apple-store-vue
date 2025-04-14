@@ -56,13 +56,11 @@ export default defineComponent({
   padding: 0;
   font: inherit;
 }
-
 .buttons-container {
   display: flex;
   gap: 16px;
   width: 100%;
 }
-
 .wishlist-btn,
 .cart-btn {
   min-width: 136px;
@@ -80,7 +78,6 @@ export default defineComponent({
   color: #000;
   background-color: #fff;
 }
-
 .cart-btn {
   color: #fff;
   background-color: #000;
@@ -90,6 +87,11 @@ export default defineComponent({
 @media (max-width: 991px) {
   .buttons-container {
     flex-direction: column;
+    margin-bottom: 22px;
+  }
+  .wishlist-btn, .cart-btn {
+    font-family: "Abel", sans-serif !important;
+    font-style: normal !important;
   }
 }
 </style>

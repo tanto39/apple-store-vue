@@ -4,7 +4,7 @@
     <div class="input-wrap">
       <input
         type="text"
-        class="input-field"
+        :class="['input-field', { 'input-field_apply': buttonTitle }]"
         :placeholder="placeholder"
         :value="modelValue"
         @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
@@ -57,10 +57,12 @@ export default defineComponent({
   letter-spacing: -0.07px;
   line-height: 24px;
 }
-
+.input-field_apply {
+  padding: 19px 0 19px 16px;
+}
 .apply-button {
   position: absolute;
-  top: 16px;
+  top: 18px;
   right: 16px;
   width: 76px;
   border-radius: 6px;
@@ -73,5 +75,15 @@ export default defineComponent({
   line-height: 1;
   background: transparent;
   cursor: pointer;
+}
+
+@media (max-width: 991px) {
+  .apply-button, .input-label{
+    font-family: 'Abel', sans-serif;
+    font-style: normal;
+  }
+  .input-field {
+    width: 95%;
+  }
 }
 </style>
