@@ -53,7 +53,7 @@ export default defineComponent({
 
 @media (max-width: 991px) {
   .category-name {
-    font-family: "Abel", sans-serif;
+    font-family: "Abel", 'Inter', sans-serif;
   }
   .category-card {
     width: 116px;

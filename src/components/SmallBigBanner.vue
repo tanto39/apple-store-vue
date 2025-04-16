@@ -61,7 +61,7 @@ export default defineComponent({
 .smallbig-banner__title {
   color: #000;
   font-size: 64px;
-  font-family: Abel, sans-serif;
+  font-family: 'Abel', 'Inter', sans-serif;
   line-height: 56px;
   margin: 0;
 }
@@ -100,7 +100,7 @@ export default defineComponent({
   .smallbig-banner__title-italic,
   .smallbig-banner__description,
   .smallbig-banner__button {
-    font-family: Abel, sans-serif !important;
+    font-family: 'Abel', 'Inter', sans-serif !important;
     font-style: normal !important;
   }
   .smallbig-banner__title,

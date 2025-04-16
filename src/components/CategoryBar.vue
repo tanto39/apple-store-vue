@@ -104,7 +104,7 @@ export default defineComponent({
   flex: 1;
 }
 .filter-text {
-  font-family: "Abel", sans-serif;
+  font-family: "Abel", 'Inter', sans-serif;
   font-size: 15px;
   line-height: 16px;
   letter-spacing: -0.075px;
@@ -119,7 +119,7 @@ export default defineComponent({
   }
   .counter-label,
   .counter-value {
-    font-family: "Abel", sans-serif;
+    font-family: "Abel", 'Inter', sans-serif;
   }
   .filter-toggle {
     display: flex;

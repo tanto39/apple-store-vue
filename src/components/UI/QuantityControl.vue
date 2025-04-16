@@ -67,7 +67,7 @@ input::-webkit-inner-spin-button {
 }
 @media (max-width: 991px) {
   .quantity-value {
-    font-family: 'Abel', sans-serif;
+    font-family: 'Abel', 'Inter', sans-serif;
     font-style: normal;
   }
 }

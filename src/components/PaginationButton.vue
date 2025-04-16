@@ -46,7 +46,7 @@ export default defineComponent({
 }
 @media (max-width: 991px) {
   .page-button {
-    font-family: 'Abel', sans-serif;
+    font-family: 'Abel', 'Inter', sans-serif;
     font-style: normal;
   }
 }

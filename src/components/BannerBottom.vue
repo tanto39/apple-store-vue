@@ -57,7 +57,7 @@ export default defineComponent({
 }
 
 .heading-regular {
-  font-family: "Abel", sans-serif;
+  font-family: "Abel", 'Inter', sans-serif;
   font-size: 72px;
   font-weight: 400;
   line-height: 0;
@@ -72,7 +72,7 @@ export default defineComponent({
 .banner-description {
   color: #787878;
   text-align: center;
-  font-family: "Abel", sans-serif;
+  font-family: "Abel", 'Inter', sans-serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 1;
@@ -99,7 +99,7 @@ export default defineComponent({
   }
   .heading-regular,
   .heading-italic {
-    font-family: "Abel", sans-serif;
+    font-family: "Abel", 'Inter', sans-serif;
     font-size: 48px;
     font-style: normal;
   }
@@ -108,7 +108,7 @@ export default defineComponent({
     width: 80%;
   }
   .shop-now-button {
-    font-family: "Abel", sans-serif !important;
+    font-family: "Abel", 'Inter', sans-serif !important;
     font-style: normal !important;
   }
 }

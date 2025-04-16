@@ -101,7 +101,7 @@ export default {
     padding: 10px 32px 100px;
   }
   .title, .description, .shop-button {
-    font-family: "Abel", sans-serif !important;
+    font-family: "Abel", 'Inter', sans-serif !important;
     font-style: normal !important;
   }
   .title{

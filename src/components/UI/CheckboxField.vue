@@ -87,12 +87,12 @@ export default defineComponent({
   font-size: 12px;
   color: rgba(146, 146, 146, 1);
   margin-left: 4px;
-  font-family: 'Abel', sans-serif;
+  font-family: 'Abel', 'Inter', sans-serif;
   line-height: 24px;
 }
 @media (max-width: 991px) {
   .label-text {
-    font-family: 'Abel', sans-serif;
+    font-family: 'Abel', 'Inter', sans-serif;
   }
 }
 </style>

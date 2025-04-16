@@ -63,7 +63,7 @@ export default defineComponent({
   letter-spacing: 0.96px;
 }
 .original-price {
-  font-family: "Abel", sans-serif;
+  font-family: "Abel", 'Inter', sans-serif;
   font-size: 24px;
   color: #a0a0a0;
   text-decoration: line-through;
@@ -72,7 +72,7 @@ export default defineComponent({
 }
 .description {
   color: #6c6c6c;
-  font-family: "Abel", sans-serif;
+  font-family: "Abel", 'Inter', sans-serif;
   font-size: 14px;
   line-height: 24px;
   letter-spacing: 0.42px;
@@ -90,7 +90,7 @@ export default defineComponent({
 
 @media (max-width: 640px) {
   .product-title, .current-price {
-    font-family: "Abel", sans-serif;
+    font-family: "Abel", 'Inter', sans-serif;
     font-style: normal;
   }
   .product-title {

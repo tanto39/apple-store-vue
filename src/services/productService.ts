@@ -1,6 +1,6 @@
 import { Product } from "@/types/Product";
 import { BASE_URL } from "./BaseUrl";
-import { mapImages } from "./mapProducts";
+import { mapImages, mapCharacteristics } from "./mapProducts";
 
 export const fetchProduct = async (productId: number): Promise<Product> => {
   const response = await fetch(`${BASE_URL}api/products/${productId}`);
@@ -10,9 +10,7 @@ export const fetchProduct = async (productId: number): Promise<Product> => {
 
   return {
     ...product,
-    characteristics: product.characteristics?.map((characteristic) =>
-      characteristic.unit_type !== "значение" ? characteristic : { ...characteristic, unit_type: "" }
-    ),
-    images: mapImages(product)
+    characteristics: mapCharacteristics(product),
+    images: mapImages(product),
   };
 };

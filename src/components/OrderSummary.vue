@@ -107,7 +107,7 @@ export default defineComponent({
 }
 .price-label.secondary {
   color: rgba(84, 84, 84, 1);
-  font-family: Abel, -apple-system, Roboto, Helvetica, sans-serif;
+  font-family: 'Abel', 'Inter', 'Helvetica', sans-serif;
 }
 .price-amount {
   line-height: 32px;
@@ -139,10 +139,8 @@ export default defineComponent({
     padding: 56px 16px;
   }
   .order-summary, .input-label, .price-label, .price-amount, .checkout-button {
-    font-family: 'Abel', sans-serif !important;
+    font-family: 'Abel', 'Inter', sans-serif !important;
     font-style: normal !important;
-  }
-  .checkout-button {
   }
 }
 </style>

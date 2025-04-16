@@ -71,7 +71,7 @@ export default defineComponent({
   font-style: italic;
 }
 .product-id {
-  font-family: Abel, -apple-system, Roboto, Helvetica, sans-serif;
+  font-family: 'Abel', 'Inter', 'Helvetica', sans-serif;
   font-size: 14px;
   line-height: 24px;
   margin-top: 0;
@@ -79,7 +79,7 @@ export default defineComponent({
 
 @media (max-width: 991px) {
   .product-name {
-    font-family: "Abel", sans-serif;
+    font-family: "Abel", 'Inter', sans-serif;
     font-style: normal;
   }
 }

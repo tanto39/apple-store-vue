@@ -79,7 +79,7 @@ export default defineComponent({
 
 @media (max-width: 991px) {
   .apply-button, .input-label{
-    font-family: 'Abel', sans-serif;
+    font-family: 'Abel', 'Inter', sans-serif;
     font-style: normal;
   }
   .input-field {

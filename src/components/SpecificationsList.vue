@@ -1,7 +1,7 @@
 <template>
   <section class="specs-grid">
     <article v-for="(spec, index) in specifications" :key="index" class="spec-item">
-      <img class="spec-icon" src="../assets/spec-screen.svg" alt="" />
+      <img class="spec-icon" :src="spec.icon" alt="" />
       <div class="spec-content">
         <span class="spec-label">{{ spec.characteristic }}</span>
         <span class="spec-value">{{ spec.value }} {{ spec.unit_type }}</span>
@@ -57,7 +57,7 @@ export default defineComponent({
 }
 .spec-label {
   color: #a7a7a7;
-  font-family: "Abel", sans-serif;
+  font-family: "Abel", 'Inter', sans-serif;
 }
 .spec-value {
   font-style: italic;
@@ -65,7 +65,7 @@ export default defineComponent({
 
 @media (max-width: 991px) {
   .spec-value {
-    font-family: "Abel", sans-serif;
+    font-family: "Abel", 'Inter', sans-serif;
     font-style: normal;
   }
   .specs-grid{

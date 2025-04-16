@@ -102,7 +102,7 @@ export default defineComponent({
 .product-card__price {
   color: #000;
   text-align: center;
-  font-family: Abel;
+  font-family: 'Abel', 'Inter', sans-serif;
   font-size: 24px;
   font-weight: 400;
   line-height: 24px;
@@ -146,7 +146,7 @@ export default defineComponent({
   }
   .product-card__button,
   .product-card__title {
-    font-family: Abel, sans-serif !important;
+    font-family: 'Abel', 'Inter', sans-serif !important;
     font-style: normal !important;
   }
   .product-card__button {

@@ -62,7 +62,7 @@ export default defineComponent({
 }
 .title {
   color: #fff;
-  font-family: "Abel", sans-serif;
+  font-family: "Abel", 'Inter', sans-serif;
   font-size: 96px;
   font-weight: 400;
   display: block;
@@ -108,7 +108,7 @@ export default defineComponent({
   .subtitle,
   .description,
   .cta-button {
-    font-family: "Abel", sans-serif !important;
+    font-family: "Abel", 'Inter', sans-serif !important;
     font-style: normal !important;
   }
   .title {

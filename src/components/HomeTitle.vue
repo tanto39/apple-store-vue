@@ -76,7 +76,7 @@ export default defineComponent({
 
 @media (max-width: 991px) {
   .home-title {
-    font-family: "Abel", sans-serif;
+    font-family: "Abel", 'Inter', sans-serif;
     font-style: normal;
     font-size: 24px;
     line-height: 1;

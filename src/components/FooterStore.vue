@@ -142,7 +142,7 @@ export default defineComponent({
 }
 .nav-title {
   color: #fff;
-  font-family: "Abel", sans-serif;
+  font-family: "Abel", 'Inter', sans-serif;
   font-size: 16px;
   line-height: 16px;
   margin-bottom: 8px;
@@ -158,7 +158,7 @@ export default defineComponent({
 }
 .nav-link {
   color: #cfcfcf;
-  font-family: "Abel", sans-serif;
+  font-family: "Abel", 'Inter', sans-serif;
   font-size: 14px;
   line-height: 29px;
   text-decoration: none;

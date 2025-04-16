@@ -31,24 +31,17 @@ export default defineComponent({
   width: 100%;
   border-bottom: 0.5px solid #cdcdcd;
 }
-
 .spec-label {
   font-family: Abel;
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
 }
-
 .spec-value {
   text-align: right;
-  font-family: Abel, Arial, Helvetica, sans-serif;
+  font-family: 'Abel', 'Inter', 'Helvetica', sans-serif;
   font-size: 15px;
   font-weight: 400;
   line-height: 24px;
 }
-
-@media (max-width: 991px) {
-  
-}
-
 </style>

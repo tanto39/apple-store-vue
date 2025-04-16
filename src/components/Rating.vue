@@ -102,7 +102,7 @@ export default defineComponent({
     gap: 30px;
   }
   .rating-score, .review-count {
-    font-family: 'Abel', sans-serif;
+    font-family: 'Abel', 'Inter', sans-serif;
     font-style: normal;
   }
 }

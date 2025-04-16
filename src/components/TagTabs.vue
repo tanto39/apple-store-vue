@@ -78,7 +78,7 @@ export default defineComponent({
     justify-content: center;
   }
   .tabs__item  {
-    font-family: Abel, sans-serif;
+    font-family: 'Abel', 'Inter', sans-serif;
     font-size: 16px;
   }
 }

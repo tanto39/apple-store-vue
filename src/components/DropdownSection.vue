@@ -75,7 +75,7 @@ const toggleDropdown = () => {
 
 @media (max-width: 991px) {
   .dropdown-title {
-    font-family: "Abel", sans-serif;
+    font-family: "Abel", 'Inter', sans-serif;
   }
 }
 </style>

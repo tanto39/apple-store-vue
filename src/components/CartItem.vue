@@ -87,7 +87,7 @@ export default defineComponent({
 }
 .product-sku {
   width: 100%;
-  font-family: Abel;
+  font-family: 'Abel', 'Inter', sans-serif;
   font-size: 14px;
   line-height: 24px;
   margin: 0;
@@ -117,7 +117,7 @@ export default defineComponent({
     flex-wrap: wrap;
   }
   .product-name, .product-actions, .product-price {
-    font-family: 'Abel', sans-serif;
+    font-family: 'Abel', 'Inter', sans-serif;
     font-style: normal;
   }
 }

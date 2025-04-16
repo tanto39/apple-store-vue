@@ -27,7 +27,7 @@ export default defineComponent({
 .button {
   border-radius: 6px;
   text-align: center;
-  font-family: "ABeeZee", sans-serif;
+  font-family: "ABeeZee", "Inter", sans-serif;
   font-style: italic;
   cursor: pointer;
   transition: all 0.3s ease;

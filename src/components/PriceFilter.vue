@@ -118,7 +118,7 @@ export default defineComponent({
   font-family: inherit;
 }
 .range-label, .range-input {
-  font-family: 'Abel', sans-serif;
+  font-family: 'Abel', 'Inter', sans-serif;
   font-size: 14px;
   line-height: 24px;
 }

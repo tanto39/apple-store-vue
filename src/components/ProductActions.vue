@@ -41,7 +41,7 @@ export default defineComponent({
 <style scoped>
 .description {
   color: #6c6c6c;
-  font-family: "Abel", sans-serif;
+  font-family: "Abel", 'Inter', sans-serif;
   font-size: 14px;
   line-height: 24px;
   letter-spacing: 0.42px;
@@ -90,7 +90,7 @@ export default defineComponent({
     margin-bottom: 22px;
   }
   .wishlist-btn, .cart-btn {
-    font-family: "Abel", sans-serif !important;
+    font-family: "Abel", 'Inter', sans-serif !important;
     font-style: normal !important;
   }
 }

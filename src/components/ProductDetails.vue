@@ -95,7 +95,7 @@ export default defineComponent({
     padding: 40px 0 0 0;
   }
   .details-title, .details-description {
-    font-family: 'Abel', sans-serif;
+    font-family: 'Abel', 'Inter', sans-serif;
   }
 }
 </style>

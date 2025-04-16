@@ -75,7 +75,7 @@ const deliveryFeatures: DeliveryFeature[] = [
     text-align: center;
   }
   .feature-title, .feature-subtitle {
-    font-family: "Abel", sans-serif;
+    font-family: "Abel", 'Inter', sans-serif;
     font-style: normal;
   }
 }

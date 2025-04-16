@@ -64,7 +64,7 @@ export default defineComponent({
 
 @media (max-width: 991px) {
   .search-input, .search-input::placeholder {
-    font-family: 'Abel', sans-serif;
+    font-family: 'Abel', 'Inter', sans-serif;
     font-style: normal;
   }
 }
