@@ -34,7 +34,7 @@ export default defineComponent({
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex-shrink: 1;
+  flex-shrink: 0;
   width: 112px;
   white-space: nowrap;
   cursor: pointer;
@@ -56,7 +56,8 @@ export default defineComponent({
     font-family: "Abel", 'Inter', sans-serif;
   }
   .category-card {
-    width: 116px;
+    width: 33%;
+    flex-shrink: 1;
   }
 }
 </style>

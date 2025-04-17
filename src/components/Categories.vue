@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed } from "vue";
+import { defineComponent } from "vue";
 import CategoryCard from "./CategoryCard.vue";
 import HomeTitle from "./HomeTitle.vue";
 import { useCategories } from "@/hooks/useCategories";
@@ -47,11 +47,10 @@ export default defineComponent({
 }
 .categories {
   display: flex;
-  justify-content: center;
   gap: 32px;
   font-style: italic;
   font-weight: 400;
-  flex-wrap: wrap;
+  overflow: hidden;
 }
 @media (max-width: 991px) {
   .categories-section {
@@ -60,6 +59,7 @@ export default defineComponent({
     margin: 0 auto;
   }
   .categories {
+    flex-wrap: wrap;
     gap: 16px;
     margin-top: 16px;
   }
