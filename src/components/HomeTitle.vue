@@ -26,6 +26,7 @@ export default defineComponent({
       type: Boolean,
     },
   },
+  emits: ["navigate"],
   methods: {
     navigatePrevious(): void {
       this.$emit("navigate", "previous");

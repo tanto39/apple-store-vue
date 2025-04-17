@@ -1,10 +1,10 @@
 <template>
   <div class="categories-wrap">
     <section class="categories-section">
-      <HomeTitle title="Browse By Category" :nav="true" />
-      <div class="categories">
+      <HomeTitle title="Browse By Category" :nav="true" @navigate="onNavigate" />
+      <div class="categories" ref="categoriesContainer">
         <CategoryCard
-          v-for="(category, index) in categories"
+          v-for="(category, index) in visibleCategories"
           :key="category.id"
           :imageUrl="category.imageUrl"
           :categoryName="category.name"
@@ -16,53 +16,21 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref, computed } from "vue";
 import CategoryCard from "./CategoryCard.vue";
 import HomeTitle from "./HomeTitle.vue";
-
-interface Category {
-  id: number;
-  name: string;
-  imageUrl: string;
-}
+import { useCategories } from "@/hooks/useCategories";
 
 export default defineComponent({
   name: "Categories",
   components: { CategoryCard, HomeTitle },
-  data() {
+  setup() {
+    const { categoriesContainer, visibleCategories, onNavigate } = useCategories();
+
     return {
-      categories: [
-        {
-          id: 2,
-          name: "Phones",
-          imageUrl: "/images/Phones.svg",
-        },
-        {
-          id: 5,
-          name: "Smart Watches",
-          imageUrl: "/images/SmartWatches.svg",
-        },
-        {
-          id: 1,
-          name: "Accessories",
-          imageUrl: "/images/Cameras.svg",
-        },
-        {
-          id: 6,
-          name: "Headphones",
-          imageUrl: "/images/Headphones.svg",
-        },
-        {
-          id: 3,
-          name: "Computers",
-          imageUrl: "/images/Computers.svg",
-        },
-        {
-          id: 4,
-          name: "Tablets",
-          imageUrl: "/images/Gaming.svg",
-        },
-      ] as Category[],
+      categoriesContainer,
+      visibleCategories,
+      onNavigate,
     };
   },
 });
