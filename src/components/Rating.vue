@@ -1,13 +1,17 @@
 <template>
-  <div class="rating-container">
+  <div class="rating-container" v-if="rating">
     <HomeTitle class="title" title="Reviews" />
     <article class="rating">
       <div class="rating-inner">
         <div class="rating-top">
-          <h2 class="rating-score">{{ rating }}</h2>
+          <h2 class="rating-score">{{ rating.toFixed(1) }}</h2>
           <p class="review-count">of {{ reviewCount }} reviews</p>
         </div>
-        <div class="rating-image"></div>
+        <div class="rating-stars">
+          <template v-for="i in 5" :key="i">
+            <img :src="getStarSrc(i)" class="star-img" alt="" />
+          </template>
+        </div>
       </div>
     </article>
   </div>
@@ -25,26 +29,34 @@ export default defineComponent({
   props: {
     rating: {
       type: Number,
-      required: true,
-      default: 4.8,
+      required: true
     },
     reviewCount: {
       type: Number,
       required: true,
-      default: 125,
     },
   },
+  setup(props) {
+    const getStarSrc = (index: number) => {
+      const starIndex = index - 1;
+      const value = Math.max(0, Math.min(props.rating - starIndex, 1));
+      const percent = Math.round(value * 10); // округление до 0.1
+      return `/images/stars/star-${percent}.svg`;
+    }
+
+    return {getStarSrc};
+  }
 });
 </script>
 
 <style scoped>
 .rating-container {
   max-width: 1120px;
-  margin: 88px auto 88px auto;
+  margin: 88px auto;
 }
 .rating {
   border-radius: 25px;
-  background-color: rgba(250, 250, 250, 1);
+  background-color: #FAFAFA;
   font-style: italic;
   color: #000;
   font-weight: 400;
@@ -69,13 +81,16 @@ export default defineComponent({
   font-size: 15px;
   line-height: 1;
   opacity: 0.3;
-  margin: 12px 0 0 0;
+  margin: 16px 0 0 0;
 }
-.rating-image {
-  background: url("../assets/Stars.svg") center center no-repeat;
-  width: 136px;
-  height: 32px;
-  margin-top: 10px;
+.rating-stars {
+  display: flex;
+  margin-top: 16px;
+  justify-content: center;
+}
+.star-img {
+  width: 24px;
+  height: 24px;
 }
 .title {
   display: none;
@@ -97,13 +112,17 @@ export default defineComponent({
   }
   .rating-inner {
     flex-direction: row;
-    margin-left: 52px;
+    margin-left: 56px;
     align-items: center;
-    gap: 30px;
+    gap: 47px;
   }
-  .rating-score, .review-count {
-    font-family: 'Abel', 'Inter', sans-serif;
+  .rating-score,
+  .review-count {
+    font-family: "Abel", "Inter", sans-serif;
     font-style: normal;
+  }
+  .rating-stars {
+    margin: 0;
   }
 }
 </style>

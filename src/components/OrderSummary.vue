@@ -39,19 +39,30 @@
       <ButtonStore class="checkout-button" @click="handleCheckout">Checkout</ButtonStore>
     </div>
   </section>
+  <SuccessModal :isVisible="showSuccessModal" @close="showSuccessModal = false" />
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import { useOrder } from "@/hooks/useOrder";
 import InputStore from "../components/UI/InputStore.vue";
+import SuccessModal from "@/components/SuccessModal.vue";
 
 export default defineComponent({
   name: "OrderSummary",
-  components: { InputStore },
+  components: { InputStore, SuccessModal },
   setup() {
-    const { discountCode, bonusCard, total, estimatedTax, estimatedShipping, subtotal, handleCheckout, cartItems } =
-      useOrder();
+    const {
+      discountCode,
+      bonusCard,
+      total,
+      estimatedTax,
+      estimatedShipping,
+      subtotal,
+      handleCheckout,
+      cartItems,
+      showSuccessModal
+    } = useOrder();
 
     return {
       discountCode,
@@ -62,6 +73,7 @@ export default defineComponent({
       subtotal,
       handleCheckout,
       cartItems,
+      showSuccessModal,
     };
   },
 });
@@ -107,7 +119,7 @@ export default defineComponent({
 }
 .price-label.secondary {
   color: rgba(84, 84, 84, 1);
-  font-family: 'Abel', 'Inter', 'Helvetica', sans-serif;
+  font-family: "Abel", "Inter", "Helvetica", sans-serif;
 }
 .price-amount {
   line-height: 32px;
@@ -138,8 +150,12 @@ export default defineComponent({
     width: auto;
     padding: 56px 16px;
   }
-  .order-summary, .input-label, .price-label, .price-amount, .checkout-button {
-    font-family: 'Abel', 'Inter', sans-serif !important;
+  .order-summary,
+  .input-label,
+  .price-label,
+  .price-amount,
+  .checkout-button {
+    font-family: "Abel", "Inter", sans-serif !important;
     font-style: normal !important;
   }
 }

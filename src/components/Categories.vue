@@ -2,7 +2,8 @@
   <div class="categories-wrap">
     <section class="categories-section">
       <HomeTitle title="Browse By Category" :nav="true" @navigate="onNavigate" />
-      <div class="categories" ref="categoriesContainer">
+      <Loader v-if="isLoading"/>
+      <div v-else class="categories" ref="categoriesContainer">
         <CategoryCard
           v-for="(category, index) in visibleCategories"
           :key="category.id"
@@ -25,12 +26,14 @@ export default defineComponent({
   name: "Categories",
   components: { CategoryCard, HomeTitle },
   setup() {
-    const { categoriesContainer, visibleCategories, onNavigate } = useCategories();
+    const { categoriesContainer, visibleCategories, onNavigate, isLoading, error } = useCategories();
 
     return {
       categoriesContainer,
       visibleCategories,
       onNavigate,
+      isLoading,
+      error,
     };
   },
 });

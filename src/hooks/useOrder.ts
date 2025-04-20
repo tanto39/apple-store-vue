@@ -7,6 +7,7 @@ export const useOrder = () => {
   const store = useStore();
   const discountCode = ref("");
   const bonusCard = ref("");
+  const showSuccessModal = ref(false);
 
   const cartItems = computed(() => store.getters["cart/cartItems"]);
 
@@ -34,6 +35,7 @@ export const useOrder = () => {
 
   const handleCheckout = async () => {
     await createOrder(prepareOrderData());
+    showSuccessModal.value = true;
     store.dispatch("cart/clearCart");
   };
 
@@ -46,5 +48,6 @@ export const useOrder = () => {
     subtotal,
     handleCheckout,
     cartItems,
+    showSuccessModal
   };
 };

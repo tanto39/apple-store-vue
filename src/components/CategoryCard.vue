@@ -49,11 +49,13 @@ export default defineComponent({
 
 .category-name {
   margin-top: 8px;
+  font-style: italic;
 }
 
 @media (max-width: 991px) {
   .category-name {
     font-family: "Abel", 'Inter', sans-serif;
+    font-style: normal;
   }
   .category-card {
     width: 33%;
