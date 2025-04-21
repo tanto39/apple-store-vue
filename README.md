@@ -1,5 +1,11 @@
 # apple-store
 
+В проекте используются:
+-	Vue
+-	TypeScript
+-	Vuex
+-	Composition API
+
 ## Project setup
 ```
 npm install
