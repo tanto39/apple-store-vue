@@ -7,7 +7,9 @@
       </div>
     </div>
     <div class="favorites-empty" v-else><p>Favorites is empty.</p></div>
-    <OrderSummary class="order-block" />
+    <div class="order-block">
+      <OrderSummary />
+    </div>
   </section>
 </template>
 

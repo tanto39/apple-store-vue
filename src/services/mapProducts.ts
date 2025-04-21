@@ -26,19 +26,8 @@ export const mapCharacteristics = (product: Product) => {
   return product.characteristics.map((characteristic: Characteristic) => ({
     ...characteristic,
     unit_type: characteristic.unit_type !== "значение" ? characteristic.unit_type : "",
-    icon: mapIcon(characteristic),
+    icon: iconMap.find(ic => ic.name === characteristic.characteristic)?.icon || ''
   }));
-};
-
-export const mapIcon = (characteristic: Characteristic) => {
-  let iconRes = "/images/spec-screen.svg";
-  iconMap.forEach((icon) => {
-    if(icon.name == characteristic.characteristic) {
-      iconRes = icon.icon;
-      return;
-    }
-  });
-  return iconRes;
 };
 
 const iconMap: IIconMap[] = [
